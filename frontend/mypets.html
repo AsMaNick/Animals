@@ -39,18 +39,18 @@
 			<div class="row">
 				<div class="col-sm-3 col-md-2 sidebar">
 					<ul class="nav nav-sidebar">
-						<li class="active"><a href="./mypets.html">My Pets</a></li>
-						<li><a href="">My Friends</a></li>
-						<li><a href="">Messages</a></li>
-						<li><a href="">Search</a></li>
-						<li><a href="">Shops</a></li>
+						<li class="active"><a href="./mypets.html">{{ literals.my_pets[language_id] }}</a></li>
+						<li><a href="">{{ literals.my_friends[language_id] }}</a></li>
+						<li><a href="">{{ literals.messages[language_id] }}</a></li>
+						<li><a href="">{{ literals.search[language_id] }}</a></li>
+						<li><a href="">{{ literals.shops[language_id] }}</a></li>
 					</ul>
 				</div>
 			</div>
         </div>
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">My pets</h1>
+          <h1 class="page-header">{{ literals.my_pets[language_id] }}</h1>
 
 			<ol>
 				<li v-for="pet in pets" class="pet">

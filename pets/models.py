@@ -4,8 +4,8 @@ from clients.models import Client
 
 
 ANIMALS = (
-    ('Dog', 'Dog'),
-    ('Cat', 'Cat'),
+    ('Dog', _('Dog')),
+    ('Cat', _('Cat')),
 )
 
 

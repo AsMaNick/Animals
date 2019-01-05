@@ -24,10 +24,14 @@ function addpet() {
 		return;
 	}
 	var client_id = JSON.parse(localStorage['client']).id.toString();
+	var headers = { 'accept-language': 'ua'};
 	axios.post('http://127.0.0.1:8000/api/clients/' + client_id + '/pets/', JSON.stringify({'name': name,
 																						   'kind': kind,
 																						   'birthday': birthday,
-																						   'description': description}))
+																						   'description': description}),
+																			{
+																				headers: headers
+																			})
 	.then(response => { 
 		console.log(response);
 		if (response.status == 201) {

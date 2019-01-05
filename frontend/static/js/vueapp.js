@@ -25,6 +25,12 @@
 			password_placeholder: ['Enter your password', 'Введіть ваш пароль'],
 			repeat_password_placeholder: ['Enter your password again', 'Повторіть ваш пароль'],
 			address_placeholder: ['Enter your Address', 'Введіть вашу адресу'],
+			
+			my_pets: ['My pets', 'Мої домашні тварини'],
+			my_friends: ['My friends', 'Мої друзі'],
+			messages: ['Messages', 'Повідомлення'],
+			search: ['Search', 'Пошук'],
+			shops: ['Shops', 'Магазини'],
 		},
 	}
 });

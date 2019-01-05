@@ -12,6 +12,7 @@ def pets_list(request, pk):
     List all pets of some client, or create a new pet.
     """
     if request.method == 'GET':
+        print(request.LANGUAGE_CODE)
         pets = Pet.objects.filter(owner=pk)
         serializer = PetSerializer(pets, many=True)
         return JsonResponse(serializer.data, safe=False)
@@ -20,7 +21,9 @@ def pets_list(request, pk):
         data = JSONParser().parse(request)
         data['owner'] = pk
         serializer = PetSerializer(data=data)
+        print(request.LANGUAGE_CODE)
         if serializer.is_valid():
+            print(serializer.data)
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=200)

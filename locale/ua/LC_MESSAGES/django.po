@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-05 20:54+0200\n"
+"POT-Creation-Date: 2019-01-06 00:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,3 +24,11 @@ msgstr "Користувач з таким логіном вже існує."
 #: .\clients\models.py:13 .\clients\models.py:17
 msgid "This field may not be blank."
 msgstr "Це поле обов'язкове."
+
+#: .\pets\models.py:7
+msgid "Dog"
+msgstr "Собака"
+
+#: .\pets\models.py:8
+msgid "Cat"
+msgstr "Кішка"

@@ -1,0 +1,51 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="static/css/styles.css">
+	<script type="text/javascript" src="static/js/third-party/jquery.js"> </script>
+	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
+	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
+</head>
+
+<header class="main-header">
+    <a class="logo" href="./home.html" style="text-decoration: none;"> EasyPet </a>
+	<a class="header-el" href="./mypets.html" style="text-decoration: none;"> My pets </a>
+	<a class="header-el" href="./addpet.html" style="text-decoration: none;"> Add pet </a>
+	
+	<div class="nav-bar" id="app">
+		<a class="header-el">english</a>
+		<a class="header-el"> {{ client.name + ' ' + client.surname }} </a>
+		<a class="header-el" onclick="logout()">Log out</a>
+	<div>
+</header>
+
+<div class="container" id="pets">
+	<h2>Add pet</h2>
+	<hr>
+		<label for="name"><b>Name</b></label>
+		<input type="text" placeholder="Enter name" name="name" required>
+		<label class="error" name="name_error"></label>
+		<br>
+		
+		<label class="label_field" for="kind"><b>Kind</b></label>
+		<select name="kind">
+		  <option>Dog</option>
+		  <option>Cat</option>
+		</select>
+		<label class="error" name="kind_error"></label>
+		<br>
+		
+		<label for="birthday"><b>Birthday</b></label>
+		<input type="date" name="birthday" required>
+		<label class="error" name="birthday_error"></label>
+		<br>
+		
+		<label class="label_field" for="description"><b>Description</b></label>
+		<textarea type="text" placeholder="Enter description" name="description"> </textarea>
+		<label class="error" name="description_error"></label>
+		<br>
+	<hr>
+	
+	<button type="button" class="registerbtn" onclick="addpet()"> Add Pet </button>
+</div>
+
+<script type="text/javascript" src="static/js/addpet.js"></script>
+<script type="text/javascript" src="static/js/home.js"></script>

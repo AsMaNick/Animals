@@ -1,0 +1,20 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="static/css/styles.css">
+	<script type="text/javascript" src="static/js/third-party/jquery.js"> </script>
+	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
+	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
+</head>
+
+<header class="main-header">
+    <a class="logo" href="./home.html" style="text-decoration: none;"> EasyPet </a>
+	<a class="header-el" href="./mypets.html" style="text-decoration: none;"> My pets </a>
+	<a class="header-el" href="./addpet.html" style="text-decoration: none;"> Add pet </a>
+	
+	<div class="nav-bar" id="app">
+		<a class="header-el">english</a>
+		<a class="header-el"> {{ client.name + ' ' + client.surname }} </a>
+		<a class="header-el" onclick="logout()">Log out</a>
+	<div>
+</header>
+
+<script type="text/javascript" src="static/js/home.js"></script>

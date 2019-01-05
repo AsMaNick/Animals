@@ -1,0 +1,63 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="static/css/styles.css">
+	<script type="text/javascript" src="static/js/third-party/jquery.js"> </script>
+	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
+	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
+</head>
+
+<header class="main-header">
+    <a class="logo" href="./home.html" style="text-decoration: none;"> EasyPet </a>
+	<div class="nav-bar">
+		<a class="header-el">english</a>
+		<a href="./register.html" class="header-el">Register</a>
+		<a href="./login.html" class="header-el">Sign in</a>
+	<div>
+</header>
+
+<div id="content">
+	<script type="text/javascript" src="static/js/register.js"> </script>
+	<form>
+	  <div class="container">
+		<h2>Register</h2>
+		<hr>
+
+		<label for="email"><b>Username</b></label>
+		<input type="text" placeholder="Enter username" name="username" required>
+		<label class="error" name="username_error"></label>
+		<br>
+		
+		<label class="label_field" for="email"><b>Name</b></label>
+		<input type="text" placeholder="Enter name" name="name" required>
+		<label class="error" name="name_error"></label>
+		<br>
+		
+		<label class="label_field" for="email"><b>Surname</b></label>
+		<input type="text" placeholder="Enter surname" name="surname" required>
+		<label class="error" name="surname_error"></label>
+		<br>
+		
+		<label class="label_field" for="psw"><b>Password</b></label>
+		<input type="password" placeholder="Enter Password" name="password" required>
+		<label class="error" name="password_error"></label>
+		<br>
+		
+		<label class="label_field" for="psw-repeat"><b>Repeat Password</b></label>
+		<input type="password" placeholder="Repeat Password" name="password_repeat" required>
+		<label class="error" name="password_repeat_error"></label>
+		<br>
+		
+		<label class="label_field" for="email"><b>Address</b></label>
+		<input type="text" placeholder="Enter address" name="address" required>
+		<label class="error" name="address_error"></label>
+		<br>
+		
+		<hr>
+		
+		<button type="button" class="registerbtn" onclick="register()"> Register </button>
+	  </div>
+	 
+	  <div class="container signin">
+		<p>Already have an account? <a href="../login">Sign in</a>.</p>
+	  </div>
+	</form>
+</div>

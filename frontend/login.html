@@ -1,0 +1,39 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="static/css/styles.css">
+	<script type="text/javascript" src="static/js/third-party/jquery.js"> </script>
+	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
+	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
+</head>
+
+<header class="main-header">
+    <a class="logo" href="./home.html" style="text-decoration: none;"> EasyPet </a>
+	<div class="nav-bar">
+		<a class="header-el">english</a>
+		<a href="./register.html" class="header-el">Register</a>
+		<a href="./login.html" class="header-el">Sign in</a>
+	<div>
+</header>
+
+<div id="content">
+	<script type="text/javascript" src="static/js/login.js"> </script>
+	<form>
+	  <div class="container">
+		<h2>Login</h2>
+		<hr>
+
+		<label for="email"><b>Username</b></label>
+		<input type="text" placeholder="Enter username" name="username" required>
+		
+		<label class="label_field" for="psw"><b>Password</b></label>
+		<input type="password" placeholder="Enter Password" name="password" required>
+		<label class="error" name="password_error"></label>
+		<hr>
+		
+		<button type="button" class="registerbtn" onclick="login()"> Login </button>
+	  </div>
+	 
+	  <div class="container signin">
+		<p>Don't have an account? <a href="./register.html">Register</a>.</p>
+	  </div>
+	</form>
+</div>

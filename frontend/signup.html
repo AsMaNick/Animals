@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>EasyPet</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./static/third-party/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./static/css/styles.css">
+	<script src="./static/js/third-party/jquery.min.js"></script>
+	<script src="./static/third-party/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
+	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
+</head>
+<body>
+	<div id="vueapp">
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="./home.html">EasyPet</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle clickable" data-toggle="dropdown">
+							<img src="./static/img/en-flag.png" class="flag" id="language_flag"> </img>
+							{{ literals.languages[language_id] }} <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li onclick="changeLanguage('en')"><a class="clickable"> <img src="./static/img/en-flag.png" class="flag"> </img> english</a></li>
+							<li onclick="changeLanguage('ua')"><a class="clickable"> <img src="./static/img/ua-flag.png" class="flag"> </img> українська</a></li>
+						</ul>
+					</li>
+					<li><a href="./signup.html"><span class="glyphicon glyphicon-user"></span> {{ literals.sign_up[language_id] }}</a></li>
+					<li><a href="./login.html"><span class="glyphicon glyphicon-log-in"></span> {{ literals.login[language_id] }}</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="form-container">
+				<h2>{{ literals.registration[language_id] }}</h2>
+				<hr>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{ literals.username[language_id] }}:</label>
+						<div class="col-sm-10" id="username_div">
+							<input class="form-control" name="username" :placeholder="literals.username_placeholder[language_id]"> 
+							<span id="username_error" class="help-block"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{ literals.name[language_id] }}:</label>
+						<div class="col-sm-10" id="name_div">
+							<input class="form-control" name="name" :placeholder="literals.name_placeholder[language_id]"> 
+							<span id="name_error" class="help-block"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{ literals.surname[language_id] }}:</label>
+						<div class="col-sm-10" id="surname_div">
+							<input class="form-control" name="surname" :placeholder="literals.surname_placeholder[language_id]"> 
+							<span id="surname_error" class="help-block"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{ literals.address[language_id] }}:</label>
+						<div class="col-sm-10" id="address_div">
+							<input class="form-control" name="address" :placeholder="literals.address_placeholder[language_id]"> 
+							<span id="address_error" class="help-block"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{ literals.password[language_id] }}:</label>
+						<div class="col-sm-10" id="password_div">          
+							<input type="password" class="form-control" name="password" :placeholder="literals.password_placeholder[language_id]">
+							<span id="password_error" class="help-block"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{ literals.repeat_password[language_id] }}:</label>
+						<div class="col-sm-10" id="repeat_password_div">          
+							<input type="password" class="form-control" name="repeat_password" :placeholder="literals.repeat_password_placeholder[language_id]">
+							<span id="repeat_password_error" class="help-block"></span>
+						</div>
+					</div>
+					<div class="form-group">        
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="button" class="btn btn-default" onclick="register()">{{ literals.sign_up[language_id] }}</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="./static/js/settings.js"></script>
+<script src="./static/js/register.js"></script>
+<script src="./static/js/vueapp.js"></script>
+
+</html>

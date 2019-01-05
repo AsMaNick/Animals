@@ -1,20 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<link rel="stylesheet" type="text/css" href="static/css/styles.css">
-	<script type="text/javascript" src="static/js/third-party/jquery.js"> </script>
+	<title>EasyPet</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./static/third-party/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./static/css/styles.css">
+	<script src="./static/js/third-party/jquery.min.js"></script>
+	<script src="./static/third-party/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
 	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
 </head>
+<body onload="checkLogin()">
+	<div id="vueapp">
+		<nav class="navbar navbar-inverse vueapp">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="./home.html">EasyPet</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<img src="./static/img/en-flag.png" class="flag" id="language_flag"> </img>
+							{{ literals.languages[language_id] }} <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li onclick="changeLanguage('en')"><a href="#"> <img src="./static/img/en-flag.png" class="flag"> </img> english</a></li>
+							<li onclick="changeLanguage('ua')"><a href="#"> <img src="./static/img/ua-flag.png" class="flag"> </img> українська</a></li>
+						</ul>
+					</li>
+					<li><a href="./signup.html"><span class="glyphicon glyphicon-user"></span> {{ literals.sign_up[language_id] }}</a></li>
+					<li><a href="./login.html"><span class="glyphicon glyphicon-log-in"></span> {{ literals.login[language_id] }}</a></li>
+				</ul>
+			</div>
+		</nav>
+		  
+		<div class="container">
+		</div>
+	</div>
+</body>
 
-<header class="main-header">
-    <a class="logo" href="./home.html" style="text-decoration: none;"> EasyPet </a>
-	<a class="header-el" href="./mypets.html" style="text-decoration: none;"> My pets </a>
-	<a class="header-el" href="./addpet.html" style="text-decoration: none;"> Add pet </a>
-	
-	<div class="nav-bar" id="app">
-		<a class="header-el">english</a>
-		<a class="header-el"> {{ client.name + ' ' + client.surname }} </a>
-		<a class="header-el" onclick="logout()">Log out</a>
-	<div>
-</header>
+<script src="./static/js/settings.js"></script>
+<script src="./static/js/vueapp.js"></script>
 
-<script type="text/javascript" src="static/js/home.js"></script>
+</html>

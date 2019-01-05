@@ -1,12 +1,3 @@
-function set_error(error_name, text) {
-	document.getElementById(error_name + '_error').innerHTML = text;
-	if (text == '') {
-		document.getElementById(error_name + '_div').className = 'col-sm-10';
-	} else {
-		document.getElementById(error_name + '_div').className = 'col-sm-10 has-error';
-	}
-}
-
 function clear_errors() {
 	set_error('username', '');
 	set_error('name', '');

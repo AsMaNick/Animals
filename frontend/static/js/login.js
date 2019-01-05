@@ -1,7 +1,3 @@
-function set_error(error_name, text) {
-	document.getElementsByName(error_name + '_error')[0].innerHTML = text;
-}
-
 function clear_errors() {
 	set_error('password', '');
 }
@@ -18,7 +14,7 @@ function login() {
 			localStorage['client'] = JSON.stringify(response.data.client);
 			window.location.href += '/../home.html';
 		} else {
-			set_error('password', 'Incorrect username or password');
+			set_error('password', getLocalMessage(['Incorrect username or password', 'Неправильне ім\'я користувача або пароль']));
 		}
 	});
 }

@@ -25,22 +25,3 @@ function getLanguage() {
 	return localStorage.getItem('language');
 }
 
-function getLocalMessage(s) {
-	return s[getLanguageId(getLanguage())];
-}
-
-function changeLanguage(language) {
-	setLanguageFlag(language);
-	localStorage['language'] = language;
-	vue_app.language_id = getLanguageId(language);
-}
-
-function getClient() {
-	return localStorage.getItem('language');
-}
-
-function checkLogin() {
-	if (getClient() === null) {
-		window.location.href += '/../base.html';
-	}
-}

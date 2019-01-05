@@ -1,39 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<link rel="stylesheet" type="text/css" href="static/css/styles.css">
-	<script type="text/javascript" src="static/js/third-party/jquery.js"> </script>
+	<title>EasyPet</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./static/third-party/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./static/css/styles.css">
+	<script src="./static/js/third-party/jquery.min.js"></script>
+	<script src="./static/third-party/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
 	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
 </head>
+<body>
+	<div id="vueapp">
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="./home.html">EasyPet</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle clickable" data-toggle="dropdown">
+							<img src="./static/img/en-flag.png" class="flag" id="language_flag"> </img>
+							{{ literals.languages[language_id] }} <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li onclick="changeLanguage('en')"><a class="clickable"> <img src="./static/img/en-flag.png" class="flag"> </img> english</a></li>
+							<li onclick="changeLanguage('ua')"><a class="clickable"> <img src="./static/img/ua-flag.png" class="flag"> </img> українська</a></li>
+						</ul>
+					</li>
+					<li><a href="./signup.html"><span class="glyphicon glyphicon-user"></span> {{ literals.sign_up[language_id] }}</a></li>
+					<li><a href="./login.html"><span class="glyphicon glyphicon-log-in"></span> {{ literals.login[language_id] }}</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="form-container">
+				<h2>{{ literals.login[language_id] }}</h2>
+				<hr>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{ literals.username[language_id] }}:</label>
+						<div class="col-sm-10" id="username_div">
+							<input class="form-control" name="username" :placeholder="literals.username_placeholder[language_id]"> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">{{ literals.password[language_id] }}:</label>
+						<div class="col-sm-10" id="password_div">          
+							<input type="password" class="form-control" name="password" :placeholder="literals.password_placeholder[language_id]">
+							<span id="password_error" class="help-block"></span>
+						</div>
+					</div>
+					<div class="form-group">        
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="button" class="btn btn-default" onclick="login()">{{ literals.login[language_id] }}</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
 
-<header class="main-header">
-    <a class="logo" href="./home.html" style="text-decoration: none;"> EasyPet </a>
-	<div class="nav-bar">
-		<a class="header-el">english</a>
-		<a href="./register.html" class="header-el">Register</a>
-		<a href="./login.html" class="header-el">Sign in</a>
-	<div>
-</header>
+<script src="./static/js/settings.js"></script>
+<script src="./static/js/utils.js"></script>
+<script src="./static/js/login.js"></script>
+<script src="./static/js/vueapp.js"></script>
 
-<div id="content">
-	<script type="text/javascript" src="static/js/login.js"> </script>
-	<form>
-	  <div class="container">
-		<h2>Login</h2>
-		<hr>
-
-		<label for="email"><b>Username</b></label>
-		<input type="text" placeholder="Enter username" name="username" required>
-		
-		<label class="label_field" for="psw"><b>Password</b></label>
-		<input type="password" placeholder="Enter Password" name="password" required>
-		<label class="error" name="password_error"></label>
-		<hr>
-		
-		<button type="button" class="registerbtn" onclick="login()"> Login </button>
-	  </div>
-	 
-	  <div class="container signin">
-		<p>Don't have an account? <a href="./register.html">Register</a>.</p>
-	  </div>
-	</form>
-</div>
+</html>

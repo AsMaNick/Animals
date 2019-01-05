@@ -13,30 +13,41 @@
 </head>
 <body onload="checkLogin()">
 	<div id="vueapp">
-		<nav class="navbar navbar-inverse vueapp">
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom: 0px">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="./home.html">EasyPet</a>
 				</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<a class="dropdown-toggle clickable" data-toggle="dropdown">
 							<img src="./static/img/en-flag.png" class="flag" id="language_flag"> </img>
 							{{ literals.languages[language_id] }} <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<li onclick="changeLanguage('en')"><a href="#"> <img src="./static/img/en-flag.png" class="flag"> </img> english</a></li>
-							<li onclick="changeLanguage('ua')"><a href="#"> <img src="./static/img/ua-flag.png" class="flag"> </img> українська</a></li>
+							<li onclick="changeLanguage('en')"><a class="clickable"> <img src="./static/img/en-flag.png" class="flag"> </img> english</a></li>
+							<li onclick="changeLanguage('ua')"><a class="clickable"> <img src="./static/img/ua-flag.png" class="flag"> </img> українська</a></li>
 						</ul>
 					</li>
-					<li><a href="./signup.html"><span class="glyphicon glyphicon-user"></span> {{ literals.sign_up[language_id] }}</a></li>
-					<li><a href="./login.html"><span class="glyphicon glyphicon-log-in"></span> {{ literals.login[language_id] }}</a></li>
+					<li><a class="clickable"><span class="glyphicon glyphicon-user"></span> {{ client.username }}</a></li>
+					<li><a class="clickable" onclick="logout()"><span class="glyphicon glyphicon-log-in"></span> {{ literals.logout[language_id] }}</a></li>
 				</ul>
 			</div>
 		</nav>
-		  
-		<div class="container">
-		</div>
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li class="active"><a href="">My Pets</a></li>
+						<li><a href="">My Friends</a></li>
+						<li><a href="">Messages</a></li>
+						<li><a href="">Search</a></li>
+						<li><a href="">Shops</a></li>
+					</ul>
+				</div>
+			</div>
+        </div>
 	</div>
 </body>
 

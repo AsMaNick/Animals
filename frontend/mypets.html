@@ -1,32 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<link rel="stylesheet" type="text/css" href="static/css/styles.css">
-	<script type="text/javascript" src="static/js/third-party/jquery.js"> </script>
+	<title>EasyPet</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./static/third-party/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./static/css/styles.css">
+	<script src="./static/js/third-party/jquery.min.js"></script>
+	<script src="./static/third-party/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
 	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
 </head>
+<body onload="checkLogin()">
+	<div id="vueapp">
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom: 0px">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="./home.html">EasyPet</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle clickable" data-toggle="dropdown">
+							<img src="./static/img/en-flag.png" class="flag" id="language_flag"> </img>
+							{{ literals.languages[language_id] }} <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li onclick="changeLanguage('en')"><a class="clickable"> <img src="./static/img/en-flag.png" class="flag"> </img> english</a></li>
+							<li onclick="changeLanguage('ua')"><a class="clickable"> <img src="./static/img/ua-flag.png" class="flag"> </img> українська</a></li>
+						</ul>
+					</li>
+					<li><a class="clickable"><span class="glyphicon glyphicon-user"></span> {{ client.username }}</a></li>
+					<li><a class="clickable" onclick="logout()"><span class="glyphicon glyphicon-log-in"></span> {{ literals.logout[language_id] }}</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li class="active"><a href="./mypets.html">My Pets</a></li>
+						<li><a href="">My Friends</a></li>
+						<li><a href="">Messages</a></li>
+						<li><a href="">Search</a></li>
+						<li><a href="">Shops</a></li>
+					</ul>
+				</div>
+			</div>
+        </div>
+		
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">My pets</h1>
 
-<header class="main-header">
-    <a class="logo" href="./home.html" style="text-decoration: none;"> EasyPet </a>
-	<a class="header-el" href="./mypets.html" style="text-decoration: none;"> My pets </a>
-	<a class="header-el" href="./addpet.html" style="text-decoration: none;"> Add pet </a>
-	
-	<div class="nav-bar" id="app">
-		<a class="header-el">english</a>
-		<a class="header-el"> {{ client.name + ' ' + client.surname }} </a>
-		<a class="header-el clickable" onclick="logout()">Log out</a>
-	<div>
-</header>
+			<ol>
+				<li v-for="pet in pets" class="pet">
+					{{ pet.kind + ' ' + pet.name }}
+				</li>
+			</ol>
+			<hr>
+		</div>
+	</div>
+</body>
 
-<div class="container" id="pets">
-	<h2>{{ title }}</h2>
-	<hr>
+<script src="./static/js/settings.js"></script>
+<script src="./static/js/utils.js"></script>
+<script src="./static/js/vueapp.js"></script>
+<script src="./static/js/main.js"></script>
 
-	<ol>
-		<li v-for="pet in pets" class="pet" v-on:click="show_pet" :name="pet.kind">
-			{{ pet.kind + ' ' + pet.name }}
-		</li>
-	</ol>
-	<hr>
-</div>
-
-<script type="text/javascript" src="static/js/home.js"></script>
+</html>

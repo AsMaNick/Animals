@@ -18,11 +18,16 @@ function changeLanguage(language) {
 }
 
 function getClient() {
-	return localStorage.getItem('language');
+	return JSON.parse(localStorage.getItem('client'));
 }
 
 function checkLogin() {
 	if (getClient() === null) {
 		window.location.href += '/../base.html';
 	}
+}
+
+function logout() {
+	localStorage.removeItem('client');
+	window.location.href += '/../base.html';
 }

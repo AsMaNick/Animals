@@ -1,11 +1,14 @@
 ﻿var vue_app = new Vue({
 	el: '#vueapp',
 	data: {
+		pets: [],
+		client: getClient(),
 		language_id: getLanguageId(getLanguage()),
 		literals: {
 			languages: ['english', 'українська'],
 			sign_up: ['Sign Up', 'Зареєструватися'],
 			login: ['Login', 'Увійти'],
+			logout: ['Logout', 'Вийти'],
 			
 			registration: ['Registration', 'Реєстрація'],
 			

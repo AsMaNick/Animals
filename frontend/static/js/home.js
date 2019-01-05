@@ -27,8 +27,3 @@ var app2 = new Vue({
     }
   }
 });
-
-function logout() {
-	localStorage.removeItem('client');
-	window.location.href += '/../base.html';
-}

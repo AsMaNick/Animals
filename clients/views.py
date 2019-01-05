@@ -24,8 +24,6 @@ def client_list(request):
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':
-        print(dir(request), request.LANGUAGE_CODE)
-        print(request.META['HTTP_ACCEPT_LANGUAGE'])
         data = JSONParser().parse(request)
         if 'password_hash' in data:
             data['password_hash'] = calc_hash(data['password_hash'])

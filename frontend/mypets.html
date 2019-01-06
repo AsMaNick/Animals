@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="./static/css/styles.css">
 	<script src="./static/js/third-party/jquery.min.js"></script>
 	<script src="./static/third-party/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./static/js/utils.js"></script>
 	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
 	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
 </head>
@@ -53,17 +54,22 @@
           <h1 class="page-header">{{ literals.my_pets[language_id] }}</h1>
 
 			<ol>
-				<li v-for="pet in pets" class="pet">
-					{{ pet.kind + ' ' + pet.name }}
-				</li>
+				<div v-for="pet in pets" v-on:click="loadPet">
+					<a :href="'./addpet.html#' + pet.id"> <img :src="'http://127.0.0.1:8000' + pet.avatar" class="img-circle pet_small_photo"> </a>
+					<a :href="'./addpet.html#' + pet.id"> {{ pet.name }} </a>
+					<hr>
+				</div>
+				<div>
+					<a href="./addpet.html"> <img src="./static/img/add.png" class="img-circle pet_small_photo"> </a>
+					<a href="./addpet.html"> {{ literals.add_new_pet[language_id] }} </a>
+					<hr>
+				</div>
 			</ol>
-			<hr>
 		</div>
 	</div>
 </body>
 
 <script src="./static/js/settings.js"></script>
-<script src="./static/js/utils.js"></script>
 <script src="./static/js/vueapp.js"></script>
 <script src="./static/js/main.js"></script>
 

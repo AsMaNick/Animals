@@ -31,6 +31,13 @@
 			messages: ['Messages', 'Повідомлення'],
 			search: ['Search', 'Пошук'],
 			shops: ['Shops', 'Магазини'],
+			
+			add_new_pet: ['Add new pet', 'Додати нову домашню тваринку'],
 		},
+	},
+	methods: {
+		loadPet: function (event) {
+			console.log(event.target);
+		}
 	}
 });

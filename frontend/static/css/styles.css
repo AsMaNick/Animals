@@ -224,3 +224,10 @@ body {
 /*
  * Base structure
  */
+ 
+ .pet_small_photo {
+	 width: 96px;
+	 /*border: solid;*/
+	 border-width: 1px;
+	 border-color: grey;
+ }

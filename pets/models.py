@@ -4,8 +4,8 @@ from clients.models import Client
 
 
 ANIMALS = (
-    ('Dog', _('Dog')),
-    ('Cat', _('Cat')),
+    ('Dog', 'Dog'),
+    ('Cat', 'Cat'),
 )
 
 
@@ -15,6 +15,7 @@ class Pet(models.Model):
     kind = models.CharField(max_length=20, choices=ANIMALS)
     owner = models.ForeignKey(Client, on_delete=models.CASCADE)
     description = models.TextField(blank=True)
+    avatar = models.ImageField(upload_to='pets', blank=True)
 
     class Meta:
         ordering = ('birthday',)

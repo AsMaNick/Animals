@@ -40,3 +40,16 @@ function getHrefInfo() {
 	}
 	return s.substr(pos + 1);
 }
+
+function translateUkr(kind) {
+	words = {
+		'Собака': 'Dog',
+		'Кішка': 'Cat',
+		'Чоловіча': 'Male',
+		'Жіноча': 'Feale',
+	}
+	if (kind in words) {
+		return words[kind];
+	}
+	return kind;
+}

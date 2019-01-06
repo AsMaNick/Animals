@@ -58,7 +58,10 @@
 				</div>
 				<div class="col-sm-9" contenteditable="false">
 					<div class="panel panel-default">
-						<div class="panel-heading">Personal information</div>
+						<div class="panel-heading">
+							{{ literals.personal_info[language_id] }}.
+							<a class="clickable" :href="'./addpet.html#' + pet_id">{{ literals.edit[language_id] }}. </a>
+						</div>
 						<table class = "table">
 							<tr>
 								<td class="col-sm-2 text-left">{{ literals.alias[language_id] }}: </td>

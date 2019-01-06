@@ -1,5 +1,6 @@
 function loadPet() {
 	var client = getClient();
+	vue_app.pet_id = parseInt(getHrefInfo());
 	var headers = { 'accept-language': getLanguage()};
 	if (client) {
 		axios

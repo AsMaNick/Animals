@@ -2,6 +2,7 @@
 	el: '#vueapp',
 	data: {
 		pet: null,
+		pet_id: null,
 		pets: [],
 		client: getClient(),
 		language_id: getLanguageId(getLanguage()),
@@ -48,9 +49,15 @@
 			cat: ['Cat', 'Кішка'],
 			alias_placeholder: ['Enter alias of your pet', 'Введіть кличку вашого улюбленця'],
 			description_placeholder: ['Enter description of your pet', 'Введіть особливі звички вашого улюбленця'],
+			breed_placeholder: ['Enter breed of your pet', 'Введіть породу вашого улюбленця'],
 			
 			gender: ['Gender', 'Стать'],
 			breed: ['Breed', 'Порода'],
+			male: ['Male', 'Чоловіча'],
+			female: ['Female', 'Жіноча'],
+			
+			personal_info: ['Personal information', 'Особиста інформація'],
+			edit: ['Edit', 'Редагувати']
 		},
 	}
 });

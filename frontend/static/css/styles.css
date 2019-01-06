@@ -228,7 +228,9 @@ body {
  .pet_small_photo {
 	 width: 96px;
 	 height: 96px;
-	 /*border: solid;*/
-	 border-width: 1px;
-	 border-color: grey;
+ }
+ 
+ .pet_big_photo {
+	 width: 256px;
+	 height: 256px;
  }

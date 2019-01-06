@@ -51,26 +51,49 @@
         </div>
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">{{ literals.my_pets[language_id] }}</h1>
-
-			<ol>
-				<div v-for="pet in pets" v-on:click="loadPet">
-					<a :href="'./viewpet.html#' + pet.id"> <img :src="'http://127.0.0.1:8000' + pet.avatar" class="img-circle pet_small_photo"> </a>
-					<a :href="'./viewpet.html#' + pet.id"> {{ pet.name }} </a>
-					<hr>
+			<h1 class="page-header">{{ pet.name }}</h1>
+			<div class="row placeholders">
+				<div class="col-xs-6 col-sm-3 placeholder">
+					<img :src="'http://127.0.0.1:8000' + pet.avatar" class="pet_big_photo"> </img>
 				</div>
-				<div>
-					<a href="./addpet.html"> <img src="./static/img/add.png" class="img-circle pet_small_photo"> </a>
-					<a href="./addpet.html"> {{ literals.add_new_pet[language_id] }} </a>
-					<hr>
-				</div>
-			</ol>
+				<div class="col-sm-9" contenteditable="false">
+					<div class="panel panel-default">
+						<div class="panel-heading">Personal information</div>
+						<table class = "table">
+							<tr>
+								<td class="col-sm-2 text-left">{{ literals.alias[language_id] }}: </td>
+								<td class="col-sm-8 text-left">{{ pet.name }}</td>
+							</tr>
+							<tr>
+								<td class="col-sm-2 text-left">{{ literals.kind[language_id] }}: </td>
+								<td class="col-sm-8 text-left">{{ pet.kind }}</td>
+							</tr>
+							<tr>
+								<td class="col-sm-2 text-left">{{ literals.gender[language_id] }}: </td>
+								<td class="col-sm-8 text-left">{{ pet.gender }}</td>
+							</tr>
+							<tr>
+								<td class="col-sm-2 text-left">{{ literals.breed[language_id] }}: </td>
+								<td class="col-sm-8 text-left">{{ pet.breed }}</td>
+							</tr>
+							<tr>
+								<td class="col-sm-2 text-left">{{ literals.birthday[language_id] }}: </td>
+								<td class="col-sm-8 text-left">{{ pet.birthday }}</td>
+							</tr>
+							<tr>
+								<td class="col-sm-2 text-left">{{ literals.description[language_id] }}: </td>
+								<td class="col-sm-8 text-left">{{ pet.description }}</td>
+							</tr>
+						</table>
+					</div>	
+				</div>	
+			</div>
 		</div>
 	</div>
 </body>
 
 <script src="./static/js/settings.js"></script>
 <script src="./static/js/vueapp.js"></script>
-<script src="./static/js/main.js"></script>
+<script type="text/javascript" src="static/js/viewpet.js"></script>
 
 </html>

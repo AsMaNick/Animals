@@ -1,6 +1,7 @@
 ﻿var vue_app = new Vue({
 	el: '#vueapp',
 	data: {
+		pet: null,
 		pets: [],
 		client: getClient(),
 		language_id: getLanguageId(getLanguage()),
@@ -47,11 +48,9 @@
 			cat: ['Cat', 'Кішка'],
 			alias_placeholder: ['Enter alias of your pet', 'Введіть кличку вашого улюбленця'],
 			description_placeholder: ['Enter description of your pet', 'Введіть особливі звички вашого улюбленця'],
+			
+			gender: ['Gender', 'Стать'],
+			breed: ['Breed', 'Порода'],
 		},
-	},
-	methods: {
-		loadPet: function (event) {
-			console.log(event.target);
-		}
 	}
 });

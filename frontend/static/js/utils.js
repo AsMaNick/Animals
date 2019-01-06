@@ -31,3 +31,12 @@ function logout() {
 	localStorage.removeItem('client');
 	window.location.href += '/../base.html';
 }
+
+function getHrefInfo() {
+	var s = window.location.href;
+	var pos = s.indexOf('#');
+	if (pos == -1) {
+		return '';
+	}
+	return s.substr(pos + 1);
+}

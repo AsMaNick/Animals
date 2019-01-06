@@ -4,8 +4,13 @@ from clients.models import Client
 
 
 ANIMALS = (
-    ('Dog', 'Dog'),
-    ('Cat', 'Cat'),
+    ('Dog', _('Dog')),
+    ('Cat', _('Cat')),
+)
+
+GENDERS = (
+    ('Male', _('Male')),
+    ('Female', _('Female')),
 )
 
 
@@ -19,6 +24,13 @@ class Pet(models.Model):
                             error_messages={
                                 'blank': _('This field may not be blank.'),
                             })
+    gender = models.CharField(max_length=20, choices=GENDERS,
+                              error_messages={
+                                  'blank': _('This field may not be blank.'),
+                              })
+    breed = models.CharField(max_length=30, error_messages={
+                                'blank': _('This field may not be blank.'),
+                             })
     owner = models.ForeignKey(Client, on_delete=models.CASCADE)
     description = models.TextField(blank=True)
     avatar = models.ImageField(upload_to='pets', blank=True)

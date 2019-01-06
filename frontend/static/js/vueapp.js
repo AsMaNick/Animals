@@ -4,6 +4,8 @@
 		pets: [],
 		client: getClient(),
 		language_id: getLanguageId(getLanguage()),
+		add_edit_type: 0,
+		
 		literals: {
 			languages: ['english', 'українська'],
 			sign_up: ['Sign Up', 'Зареєструватися'],
@@ -33,6 +35,18 @@
 			shops: ['Shops', 'Магазини'],
 			
 			add_new_pet: ['Add new pet', 'Додати нову домашню тваринку'],
+			addedit_new_pet: [['Add new pet', 'Додати нову домашню тваринку'], ['Edit information', 'Редагувати інформацію']],
+			addedit_new_pet_short: [['Add', 'Додати'], ['Edit', 'Редагувати']],
+			
+			alias: ['Alias', 'Кличка'],
+			kind: ['Kind', 'Вид'],
+			birthday: ['Birthday', 'День народження'],
+			photo: ['Photo', 'Фотографія'],
+			description: ['Description', 'Особливі звички'],
+			dog: ['Dog', 'Собака'],
+			cat: ['Cat', 'Кішка'],
+			alias_placeholder: ['Enter alias of your pet', 'Введіть кличку вашого улюбленця'],
+			description_placeholder: ['Enter description of your pet', 'Введіть особливі звички вашого улюбленця'],
 		},
 	},
 	methods: {

@@ -1,51 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<link rel="stylesheet" type="text/css" href="static/css/styles.css">
-	<script type="text/javascript" src="static/js/third-party/jquery.js"> </script>
+	<title>EasyPet</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./static/third-party/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./static/css/styles.css">
+	<script src="./static/js/third-party/jquery.min.js"></script>
+	<script src="./static/third-party/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./static/js/utils.js"></script>
 	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
 	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
 </head>
-
-<header class="main-header">
-    <a class="logo" href="./home.html" style="text-decoration: none;"> EasyPet </a>
-	<a class="header-el" href="./mypets.html" style="text-decoration: none;"> My pets </a>
-	<a class="header-el" href="./addpet.html" style="text-decoration: none;"> Add pet </a>
-	
-	<div class="nav-bar" id="app">
-		<a class="header-el">english</a>
-		<a class="header-el"> {{ client.name + ' ' + client.surname }} </a>
-		<a class="header-el" onclick="logout()">Log out</a>
-	<div>
-</header>
-
-<div class="container" id="pets">
-	<h2>Add pet</h2>
-	<hr>
-		<label for="name"><b>Name</b></label>
-		<input type="text" placeholder="Enter name" name="name" required>
-		<label class="error" name="name_error"></label>
-		<br>
+<body onload="checkLogin()">
+	<div id="vueapp">
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom: 0px">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="./home.html">EasyPet</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle clickable" data-toggle="dropdown">
+							<img src="./static/img/en-flag.png" class="flag" id="language_flag"> </img>
+							{{ literals.languages[language_id] }} <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li onclick="changeLanguage('en')"><a class="clickable"> <img src="./static/img/en-flag.png" class="flag"> </img> english</a></li>
+							<li onclick="changeLanguage('ua')"><a class="clickable"> <img src="./static/img/ua-flag.png" class="flag"> </img> українська</a></li>
+						</ul>
+					</li>
+					<li><a class="clickable"><span class="glyphicon glyphicon-user"></span> {{ client.username }}</a></li>
+					<li><a class="clickable" onclick="logout()"><span class="glyphicon glyphicon-log-in"></span> {{ literals.logout[language_id] }}</a></li>
+				</ul>
+			</div>
+		</nav>
 		
-		<label class="label_field" for="kind"><b>Kind</b></label>
-		<select name="kind">
-		  <option>Dog</option>
-		  <option>Cat</option>
-		</select>
-		<label class="error" name="kind_error"></label>
-		<br>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li class="active"><a href="./mypets.html">{{ literals.my_pets[language_id] }}</a></li>
+						<li><a href="">{{ literals.my_friends[language_id] }}</a></li>
+						<li><a href="">{{ literals.messages[language_id] }}</a></li>
+						<li><a href="">{{ literals.search[language_id] }}</a></li>
+						<li><a href="">{{ literals.shops[language_id] }}</a></li>
+					</ul>
+				</div>
+			</div>
+        </div>
 		
-		<label for="birthday"><b>Birthday</b></label>
-		<input type="date" name="birthday" required>
-		<label class="error" name="birthday_error"></label>
-		<br>
-		
-		<label class="label_field" for="description"><b>Description</b></label>
-		<textarea type="text" placeholder="Enter description" name="description"> </textarea>
-		<label class="error" name="description_error"></label>
-		<br>
-	<hr>
-	
-	<button type="button" class="registerbtn" onclick="addpet()"> Add Pet </button>
-</div>
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<h1 class="page-header">{{ literals.addedit_new_pet[add_edit_type][language_id] }}</h1>
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label class="control-label col-sm-2">{{ literals.alias[language_id] }}:</label>
+					<div class="col-sm-10" id="name_div">
+						<input class="form-control" name="name" :placeholder="literals.alias_placeholder[language_id]"> 
+						<span id="name_error" class="help-block"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">{{ literals.kind[language_id] }}:</label>
+					<div class="col-sm-10" id="kind_div">
+						<select class="form-control" name="kind">
+							<option>{{ literals.dog[language_id] }}</option>
+							<option>{{ literals.cat[language_id] }}</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">{{ literals.birthday[language_id] }}:</label>
+					<div class="col-sm-10" id="birthday_div">
+						<input class="form-control" name="birthday" type="date"> 
+						<span id="birthday_error" class="help-block"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">{{ literals.photo[language_id] }}:</label>
+					<div class="col-sm-10" id="photo_div">
+						<input class="form-control" name="photo" type="file"> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">{{ literals.description[language_id] }}:</label>
+					<div class="col-sm-10" id="description_div">
+						<textarea class="form-control" name="description" :placeholder="literals.description_placeholder[language_id]"> </textarea>
+					</div>
+				</div>
+				
+				<div class="form-group">        
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="button" class="btn btn-default" onclick="addpet()">{{ literals.addedit_new_pet_short[add_edit_type][language_id] }}</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
 
+<script src="./static/js/settings.js"></script>
+<script src="./static/js/vueapp.js"></script>
+<script src="./static/js/main.js"></script>
 <script type="text/javascript" src="static/js/addpet.js"></script>
-<script type="text/javascript" src="static/js/home.js"></script>
+
+</html>

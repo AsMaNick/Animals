@@ -11,8 +11,14 @@ ANIMALS = (
 
 class Pet(models.Model):
     birthday = models.DateField(blank=True)
-    name = models.CharField(max_length=20, default='')
-    kind = models.CharField(max_length=20, choices=ANIMALS)
+    name = models.CharField(max_length=20, default='',
+                            error_messages={
+                                'blank': _('This field may not be blank.'),
+                            })
+    kind = models.CharField(max_length=20, choices=ANIMALS,
+                            error_messages={
+                                'blank': _('This field may not be blank.'),
+                            })
     owner = models.ForeignKey(Client, on_delete=models.CASCADE)
     description = models.TextField(blank=True)
     avatar = models.ImageField(upload_to='pets', blank=True)
@@ -22,3 +28,8 @@ class Pet(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if self.avatar == '':
+            self.avatar = 'pets/' + self.kind + '.png'
+        super(Pet, self).save(*args, **kwargs)

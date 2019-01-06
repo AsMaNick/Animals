@@ -1,11 +1,21 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import parser_classes, api_view
 from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
+from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from pets.models import Pet
 from pets.serializers import PetSerializer
 
 
+def my_parse(request):
+    data = dict(request.POST)
+    print(data)
+    print(request.FILES.keys())
+    #data['avatar'] = request.FILE
+
+
+@api_view(['GET', 'POST'])
+@parser_classes((MultiPartParser, FormParser))
 @csrf_exempt
 def pets_list(request, pk):
     """
@@ -18,12 +28,11 @@ def pets_list(request, pk):
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':
-        data = JSONParser().parse(request)
+        data = request.data
         data['owner'] = pk
         serializer = PetSerializer(data=data)
-        print(request.LANGUAGE_CODE)
         if serializer.is_valid():
-            print(serializer.data)
+            #print(serializer.data)
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=200)

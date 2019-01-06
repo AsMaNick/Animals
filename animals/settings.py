@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'clients',
     'pets',
     'corsheaders',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [

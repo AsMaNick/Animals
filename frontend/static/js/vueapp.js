@@ -57,7 +57,10 @@
 			female: ['Female', 'Жіноча'],
 			
 			personal_info: ['Personal information', 'Особиста інформація'],
-			edit: ['Edit', 'Редагувати']
+			edit: ['Edit', 'Редагувати'],
+			
+			temperature: ['Temperature', 'Температура'],
+			pulse: ['Pulse', 'Пульс']
 		},
 	}
 });

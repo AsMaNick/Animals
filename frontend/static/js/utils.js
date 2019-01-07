@@ -23,13 +23,13 @@ function getClient() {
 
 function checkLogin() {
 	if (getClient() === null) {
-		window.location.href += '/../base.html';
+		window.location.href = rawHref(window.location.href) + '/../base.html';
 	}
 }
 
 function logout() {
 	localStorage.removeItem('client');
-	window.location.href += '/../base.html';
+	window.location.href = rawHref(window.location.href) + '/../base.html';
 }
 
 function getHrefInfo() {

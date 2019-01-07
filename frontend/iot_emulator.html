@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>EasyPet</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./static/third-party/bootstrap/css/bootstrap.min.css">
+	<script src="./static/js/third-party/jquery.min.js"></script>
+	<script src="./static/third-party/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./static/js/utils.js"></script>
+	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
+	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
+</head>
+<body>
+	<div class="navbar-fixed-top col-sm-8 panel panel-default">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th scope="col">Pet id</th>
+					<th scope="col">Temperature</th>
+					<th scope="col">Pulse</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="pet in pets">
+					<td> {{ pet.id }} </td>
+					<td> <input type="number" value="38" step="0.1" style="width: 70px" :id="'temperature_' + pet.id"> </td>
+					<td> <input type="number" value="120" step="1" style="width: 70px" :id="'pulse_' + pet.id"> </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+<script src="./static/js/iot_emulator.js"></script>
+
+</html>

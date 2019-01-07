@@ -73,6 +73,14 @@ function labelPlot(x, y) {
 	var rx = getMax(x);
 	var ly = getMin(y);
 	var ry = getMax(y);
+	if (lx == rx) {
+		lx -= 1;
+		rx += 1;
+	}
+	if (ly == ry) {
+		ly -= 1;
+		ry += 1;
+	}
 	var add_space_x = (rx - lx) * 0.1;
 	var add_space_y = (ry - ly) * 0.5;
 	lx -= add_space_x;
@@ -88,6 +96,9 @@ function labelPlot(x, y) {
 }
 
 function buildGraphic(x, y) {
+	if (x.length == 0) {
+		return;
+	}
 	clear();
 	labelPlot(x, y);
 	for (var i = 0; i < x.length; ++i) {
@@ -117,17 +128,26 @@ function reloadData() {
 				temperatures.push(log.temperature);
 				pulses.push(log.pulse);
 			}
-			buildGraphic(timestamps, temperatures);
-			setTimeout(function() {
+			if (document.getElementById("plot_type").value == vue_app.literals.temperature[vue_app.language_id]) {
+				buildGraphic(timestamps, temperatures);
+			} else {
+				buildGraphic(timestamps, pulses);
+			}
+			timeout_id = setTimeout(function() {
 				reloadData();
-			}, 1000);
+			}, 5000);
 		});
+}
+
+function updatePlot() {
+	clearTimeout(timeout_id);
+	reloadData();
 }
 
 /*setTimeout(function() {
 	buildGraphic([10, 150, 170, 200, 300, 500, 600, 700, 770], [120, 150, 170, 130, 160, 150, -30, 170, 164]);
 }, 100);*/
 
-setTimeout(function() {
+var timeout_id = setTimeout(function() {
 	reloadData();
 }, 100);

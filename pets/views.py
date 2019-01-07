@@ -31,6 +31,18 @@ def pets_list(request, pk):
         return JsonResponse(serializer.errors, status=200)
 
 
+@api_view(['GET'])
+@parser_classes((MultiPartParser, FormParser))
+@csrf_exempt
+def all_pets_list(request):
+    """
+    List all pets
+    """
+    pets = Pet.objects.all()
+    serializer = PetSerializer(pets, many=True)
+    return JsonResponse(serializer.data, safe=False)
+
+
 @api_view(['GET', 'PUT', 'DELETE'])
 @parser_classes((MultiPartParser, FormParser))
 @csrf_exempt
@@ -61,7 +73,7 @@ def pets_detail(request, pk):
 
 
 @api_view(['GET', 'POST'])
-@parser_classes((MultiPartParser, FormParser))
+@parser_classes((JSONParser,))
 @csrf_exempt
 def pet_logs(request, pk):
     """
@@ -72,13 +84,11 @@ def pet_logs(request, pk):
         serializer = LogFromBraceletSerializer(logs, many=True)
         return JsonResponse(serializer.data, safe=False)
 
-    """
     elif request.method == 'POST':
         data = request.data.copy()
-        data['owner'] = pk
-        serializer = PetSerializer(data=data)
+        data['pet'] = pk
+        serializer = LogFromBraceletSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=200)
-    """

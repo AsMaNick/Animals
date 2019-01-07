@@ -85,3 +85,19 @@ function loadPet(fill_form) {
 			});
 	}
 }
+
+function getMin(a) {
+	var res = a[0];
+	for (var i = 1; i < a.length; ++i) {
+		res = Math.min(res, a[i]);
+	}
+	return res;
+}
+
+function getMax(a) {
+	var res = a[0];
+	for (var i = 1; i < a.length; ++i) {
+		res = Math.max(res, a[i]);
+	}
+	return res;
+}

@@ -234,3 +234,8 @@ body {
 	 width: 256px;
 	 height: 256px;
  }
+ 
+ .canvas {
+	/*overflow: scroll;*/ /* Добавляем полосы прокрутки */
+	padding: 0 0 0 0;
+}

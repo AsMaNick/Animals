@@ -11,6 +11,9 @@
 	<script src="./static/js/utils.js"></script>
 	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
 	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
+	<script type="text/javascript" src="static/js/third-party/d3.v4.min.js"></script>
+	<script type="text/javascript" src="static/js/third-party/d3-selection-multi.v1.min.js"></script>
+	<script type="text/javascript" src="static/js/third-party/jquery-latest.js"></script>
 </head>
 <body onload="checkLogin(); loadPet();">
 	<div id="vueapp">
@@ -89,14 +92,23 @@
 							</tr>
 						</table>
 					</div>	
-				</div>	
+				</div>
+				<div class="col-sm-12" contenteditable="false" style="float: right">
+					<div class='panel panel-default canvas'>
+						<div class="panel-heading">
+							Temperature
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+		
 	</div>
+	
 </body>
 
 <script src="./static/js/settings.js"></script>
 <script src="./static/js/vueapp.js"></script>
-<script type="text/javascript" src="static/js/viewpet.js"></script>
+<script type="text/javascript" src="static/js/canvas.js"></script>
 
 </html>

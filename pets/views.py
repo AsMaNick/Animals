@@ -4,7 +4,9 @@ from rest_framework.decorators import parser_classes, api_view
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from pets.models import Pet
+from logs_from_bracelet.models import LogFromBracelet
 from pets.serializers import PetSerializer
+from logs_from_bracelet.serializers import LogFromBraceletSerializer
 
 
 @api_view(['GET', 'POST'])
@@ -24,7 +26,6 @@ def pets_list(request, pk):
         data['owner'] = pk
         serializer = PetSerializer(data=data)
         if serializer.is_valid():
-            #print(serializer.data)
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=200)
@@ -57,3 +58,27 @@ def pets_detail(request, pk):
     elif request.method == 'DELETE':
         pet.delete()
         return HttpResponse(status=204)
+
+
+@api_view(['GET', 'POST'])
+@parser_classes((MultiPartParser, FormParser))
+@csrf_exempt
+def pet_logs(request, pk):
+    """
+    List of all logs, or add log
+    """
+    if request.method == 'GET':
+        logs = LogFromBracelet.objects.filter(pet=pk)
+        serializer = LogFromBraceletSerializer(logs, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    """
+    elif request.method == 'POST':
+        data = request.data.copy()
+        data['owner'] = pk
+        serializer = PetSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=200)
+    """

@@ -54,17 +54,14 @@ function updateCoordinates(len, l, r, x, is_x) {
 function labelAxe(l, r, intervals, vertical) {
 	for (var i = 0; i < intervals; ++i) {
 		var coord = l + (r - l) / intervals * (i + 1);
-		coord = Math.round(coord * 10) / 10;
 		if (vertical) {
 			var x = updateCoordinates(width, l, r, coord, true);
 			drawLine(x, height - margin_y, x, height - margin_y - dash_length, "white", "gray", "1");
 		} else {
 			var y = updateCoordinates(height, l, r, coord, false);
 			drawLine(margin_x, y, margin_x + dash_length, y, "white", "gray", "1");
-			//drawText(margin + 10, y - 2 + font_size / 2, "gray", font_size.toString(), coord.toString());
+			coord = Math.round(coord * 10) / 10;
 			drawText(margin_x - 5, y - 2 + font_size / 2, "gray", font_size.toString(), coord.toString());
-			//console.log(elem);
-			//elem.attr("x", (x + i * 5).toString());
 		}
 	}
 }
@@ -102,6 +99,35 @@ function buildGraphic(x, y) {
 	}
 }
 
-setTimeout(function() {
+function reloadData() {
+	var headers = { 'accept-language': getLanguage()};
+	axios
+		.get('http://127.0.0.1:8000/api/pets/' + getHrefInfo() + '/logs/', 
+			 {
+				 headers: headers
+			 })
+		.then(response => {
+			var timestamps = [];
+			var temperatures = [];
+			var pulses = [];
+			for (var log of response.data) {
+				console.log(log);
+				var date = new Date(log.timestamp);
+				timestamps.push(date.getTime());
+				temperatures.push(log.temperature);
+				pulses.push(log.pulse);
+			}
+			buildGraphic(timestamps, temperatures);
+			setTimeout(function() {
+				reloadData();
+			}, 1000);
+		});
+}
+
+/*setTimeout(function() {
 	buildGraphic([10, 150, 170, 200, 300, 500, 600, 700, 770], [120, 150, 170, 130, 160, 150, -30, 170, 164]);
+}, 100);*/
+
+setTimeout(function() {
+	reloadData();
 }, 100);

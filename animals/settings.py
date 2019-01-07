@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'pets',
     'corsheaders',
     'sorl.thumbnail',
+    'logs_from_bracelet',
 ]
 
 MIDDLEWARE = [

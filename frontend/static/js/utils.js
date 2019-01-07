@@ -46,7 +46,7 @@ function translateUkr(kind) {
 		'Собака': 'Dog',
 		'Кішка': 'Cat',
 		'Чоловіча': 'Male',
-		'Жіноча': 'Feale',
+		'Жіноча': 'Female',
 	}
 	if (kind in words) {
 		return words[kind];

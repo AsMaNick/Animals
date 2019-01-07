@@ -7,13 +7,6 @@ from pets.models import Pet
 from pets.serializers import PetSerializer
 
 
-def my_parse(request):
-    data = dict(request.POST)
-    print(data)
-    print(request.FILES.keys())
-    #data['avatar'] = request.FILE
-
-
 @api_view(['GET', 'POST'])
 @parser_classes((MultiPartParser, FormParser))
 @csrf_exempt
@@ -22,13 +15,12 @@ def pets_list(request, pk):
     List all pets of some client, or create a new pet.
     """
     if request.method == 'GET':
-        print(request.LANGUAGE_CODE)
         pets = Pet.objects.filter(owner=pk)
         serializer = PetSerializer(pets, many=True)
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':
-        data = request.data
+        data = request.data.copy()
         data['owner'] = pk
         serializer = PetSerializer(data=data)
         if serializer.is_valid():
@@ -38,6 +30,8 @@ def pets_list(request, pk):
         return JsonResponse(serializer.errors, status=200)
 
 
+@api_view(['GET', 'PUT', 'DELETE'])
+@parser_classes((MultiPartParser, FormParser))
 @csrf_exempt
 def pets_detail(request, pk):
     """
@@ -53,12 +47,12 @@ def pets_detail(request, pk):
         return JsonResponse(serializer.data)
 
     elif request.method == 'PUT':
-        data = JSONParser().parse(request)
+        data = request.data.copy()
         serializer = PetSerializer(pet, data=data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=200)
 
     elif request.method == 'DELETE':
         pet.delete()

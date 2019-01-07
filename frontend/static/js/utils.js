@@ -53,3 +53,35 @@ function translateUkr(kind) {
 	}
 	return kind;
 }
+
+function rawHref() {
+	var href = window.location.href;
+	if (href.indexOf('#') == -1) {
+		return href;
+	}
+	return href.substr(0, href.indexOf('#'));
+}
+
+function loadPet(fill_form) {
+	var client = getClient();
+	vue_app.pet_id = parseInt(getHrefInfo());
+	var headers = { 'accept-language': getLanguage()};
+	if (client) {
+		axios
+			.get('http://127.0.0.1:8000/api/pets/' + getHrefInfo(), 
+				 {
+					 headers: headers
+				 })
+			.then(response => {
+				vue_app.pet = response.data;
+				if (fill_form) {
+					document.getElementsByName('name')[0].value = vue_app.pet.name;
+					document.getElementsByName('kind')[0].value = vue_app.pet.kind;
+					document.getElementsByName('description')[0].value = vue_app.pet.description;
+					document.getElementsByName('birthday')[0].value = vue_app.pet.birthday;
+					document.getElementsByName('gender')[0].value = vue_app.pet.gender;
+					document.getElementsByName('breed')[0].value = vue_app.pet.breed;
+				}
+			});
+	}
+}

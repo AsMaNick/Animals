@@ -54,7 +54,7 @@
           <h1 class="page-header">{{ literals.my_pets[language_id] }}</h1>
 
 			<ol>
-				<div v-for="pet in pets" v-on:click="loadPet">
+				<div v-for="pet in pets">
 					<a :href="'./viewpet.html#' + pet.id"> <img :src="'http://127.0.0.1:8000' + pet.avatar" class="img-circle pet_small_photo"> </a>
 					<a :href="'./viewpet.html#' + pet.id"> {{ pet.name }} </a>
 					<hr>

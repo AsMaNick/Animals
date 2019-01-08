@@ -1,7 +1,8 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
+from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
+from rest_framework.decorators import parser_classes, api_view
 from clients.models import Client
 from clients.serializers import ClientSerializer, ClientSerializerWithoutPassword
 
@@ -54,6 +55,8 @@ def check_client(request):
         return JsonResponse({'ok': False}, status=200)
 
 
+@api_view(['GET', 'PATCH', 'DELETE'])
+@parser_classes((MultiPartParser, FormParser,))
 @csrf_exempt
 def client_detail(request, pk):
     """
@@ -68,13 +71,13 @@ def client_detail(request, pk):
         serializer = ClientSerializerWithoutPassword(client)
         return JsonResponse(serializer.data)
 
-    elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = ClientSerializer(client, data=data)
+    elif request.method == 'PATCH':
+        data = request.data
+        serializer = ClientSerializer(client, data=data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=200)
 
     elif request.method == 'DELETE':
         client.delete()

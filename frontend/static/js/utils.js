@@ -106,12 +106,9 @@ function loadClient(fill_form) {
 				}
 				
 				if (fill_form) {
-					/*document.getElementsByName('name')[0].value = vue_app.pet.name;
-					document.getElementsByName('kind')[0].value = vue_app.pet.kind;
-					document.getElementsByName('description')[0].value = vue_app.pet.description;
-					document.getElementsByName('birthday')[0].value = vue_app.pet.birthday;
-					document.getElementsByName('gender')[0].value = vue_app.pet.gender;
-					document.getElementsByName('breed')[0].value = vue_app.pet.breed;*/
+					document.getElementsByName('name')[0].value = vue_app.view_client.name;
+					document.getElementsByName('surname')[0].value = vue_app.view_client.surname;
+					document.getElementsByName('address')[0].value = vue_app.view_client.address;
 				}
 			});
 	}

@@ -11,10 +11,8 @@
 	<script src="./static/js/utils.js"></script>
 	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
 	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
-	<script type="text/javascript" src="static/js/third-party/d3.v4.min.js"></script>
-	<script type="text/javascript" src="static/js/third-party/d3-selection-multi.v1.min.js"></script>
 </head>
-<body onload="checkLogin(); loadClient();">
+<body onload="checkLogin()">
 	<div id="vueapp">
 		<nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom: 0px">
 			<div class="container-fluid">
@@ -53,50 +51,49 @@
         </div>
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<h1 class="page-header">{{ view_client.name + ' ' + view_client.surname }}</h1>
-			<div class="row placeholders">
-				<div class="col-xs-6 col-sm-3 placeholder">
-					<img :src="'http://127.0.0.1:8000' + view_client.avatar" class="pet_big_photo"> </img>
+			<h1 class="page-header">{{ literals.addedit_new_pet[1][language_id] }}</h1>
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label class="control-label col-sm-2">{{ literals.name[language_id] }}:</label>
+					<div class="col-sm-10" id="name_div">
+						<input class="form-control" name="name" :placeholder="literals.name_placeholder[language_id]"> 
+						<span id="name_error" class="help-block"></span>
+					</div>
 				</div>
-				<div class="col-sm-9" contenteditable="false">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							{{ literals.personal_info[language_id] }}.
-							<a class="clickable" :href="'./edituser.html?' + view_client.id" :style="'display:' + display_edit_client">{{ literals.edit[language_id] }}. </a>
-						</div>
-						<table class = "table">
-							<tr>
-								<td class="col-sm-2 text-left">{{ literals.username[language_id] }}: </td>
-								<td class="col-sm-8 text-left">{{ view_client.username }}</td>
-							</tr>
-							<tr>
-								<td class="col-sm-2 text-left">{{ literals.full_name[language_id] }}: </td>
-								<td class="col-sm-8 text-left">{{ view_client.name + ' ' + view_client.surname }}</td>
-							</tr>
-							<tr>
-								<td class="col-sm-2 text-left">{{ literals.address[language_id] }}: </td>
-								<td class="col-sm-8 text-left">{{ view_client.address }}</td>
-							</tr>
-							<tr>
-								<td class="col-sm-2 text-left">{{ literals.registration_date[language_id] }}: </td>
-								<td class="col-sm-8 text-left">{{ view_client.registered }}</td>
-							</tr>
-							<tr>
-								<td class="col-sm-2 text-left">{{ literals.pets[language_id] }}: </td>
-								<td class="col-sm-8 text-left">{{ view_client_pets_list[language_id] }}</td>
-							</tr>
-						</table>
-					</div>	
+				<div class="form-group">
+					<label class="control-label col-sm-2">{{ literals.surname[language_id] }}:</label>
+					<div class="col-sm-10" id="surname_div">
+						<input class="form-control" name="surname" :placeholder="literals.surname_placeholder[language_id]"> 
+						<span id="surname_error" class="help-block"></span>
+					</div>
 				</div>
-			</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">{{ literals.address[language_id] }}:</label>
+					<div class="col-sm-10" id="address_div">
+						<input class="form-control" name="address" :placeholder="literals.address_placeholder[language_id]"> 
+						<span id="address_error" class="help-block"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">{{ literals.photo[language_id] }}:</label>
+					<div class="col-sm-10" id="photo_div">
+						<input class="form-control" name="photo" type="file"> 
+					</div>
+				</div>
+				
+				<div class="form-group">        
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="button" class="btn btn-default" onclick="edit_user()">{{ literals.addedit_new_pet_short[1][language_id] }}</button>
+					</div>
+				</div>
+			</form>
 		</div>
-		
 	</div>
-	
 </body>
 
 <script src="./static/js/settings.js"></script>
 <script src="./static/js/vueapp.js"></script>
-<script src="./static/js/view_user.js"></script>
+<script src="./static/js/main.js"></script>
+<script type="text/javascript" src="static/js/edit_user.js"></script>
 
 </html>

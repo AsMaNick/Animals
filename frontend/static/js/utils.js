@@ -100,9 +100,9 @@ function loadClient(fill_form) {
 				vue_app.view_client = response.data;
 				vue_app.view_client.registered = vue_app.view_client.registered.substr(0, 10);
 				if (vue_app.view_client.id == vue_app.client.id) {
-					vue_app.display_edit_client = 'default';
+					vue_app.is_i = 1;
 				} else {
-					vue_app.display_edit_client = 'none';
+					vue_app.is_i = 0;
 				}
 				
 				if (fill_form) {

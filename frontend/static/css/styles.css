@@ -231,8 +231,10 @@ body {
  }
  
  .pet_big_photo {
-	 width: 256px;
-	 height: 256px;
+	 width: 228px;
+	 height: 228px;
+	 margin-top: 17px;
+	 margin-bottom: 17px;
  }
  
  .canvas {

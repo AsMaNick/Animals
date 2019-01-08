@@ -8,7 +8,7 @@
 		client: getClient(),
 		view_client: null,
 		view_client_pets_list: null,
-		display_edit_client: null,
+		is_i: null,
 		language_id: getLanguageId(getLanguage()),
 		add_edit_type: 0,
 		
@@ -69,6 +69,8 @@
 			registration_date: ['Registration date', 'Дата реєстрації'],
 			full_name: ['Full name', 'Повне ім\'я'],
 			pets: ['Pets', 'Домашні тварини'],
+			write_message: ['Write message', 'Написати повідомлення'],
+			add_to_friends: ['Add to friends', 'Долучити до друзів'],
 		},
 	}
 });

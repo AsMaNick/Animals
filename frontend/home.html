@@ -29,7 +29,7 @@
 							<li onclick="changeLanguage('ua')"><a class="clickable"> <img src="./static/img/ua-flag.png" class="flag"> </img> українська</a></li>
 						</ul>
 					</li>
-					<li><a class="clickable"><span class="glyphicon glyphicon-user"></span> {{ client.username }}</a></li>
+					<li><a :href="'./viewuser.html?' + client.id"><span class="glyphicon glyphicon-user"></span> {{ client.username }}</a></li>
 					<li><a class="clickable" onclick="logout()"><span class="glyphicon glyphicon-log-in"></span> {{ literals.logout[language_id] }}</a></li>
 				</ul>
 			</div>
@@ -42,7 +42,7 @@
 						<li><a href="./mypets.html">{{ literals.my_pets[language_id] }}</a></li>
 						<li><a href="">{{ literals.my_friends[language_id] }}</a></li>
 						<li><a href="">{{ literals.messages[language_id] }}</a></li>
-						<li><a href="">{{ literals.search[language_id] }}</a></li>
+						<li><a href="./users.html">{{ literals.users[language_id] }}</a></li>
 						<li><a href="">{{ literals.shops[language_id] }}</a></li>
 					</ul>
 				</div>

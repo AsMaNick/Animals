@@ -34,7 +34,7 @@ function logout() {
 
 function getHrefInfo() {
 	var s = window.location.href;
-	var pos = s.indexOf('#');
+	var pos = s.indexOf(link_delimiter);
 	if (pos == -1) {
 		return '';
 	}
@@ -56,10 +56,10 @@ function translateUkr(kind) {
 
 function rawHref() {
 	var href = window.location.href;
-	if (href.indexOf('#') == -1) {
+	if (href.indexOf(link_delimiter) == -1) {
 		return href;
 	}
-	return href.substr(0, href.indexOf('#'));
+	return href.substr(0, href.indexOf(link_delimiter));
 }
 
 function loadPet(fill_form) {
@@ -81,6 +81,37 @@ function loadPet(fill_form) {
 					document.getElementsByName('birthday')[0].value = vue_app.pet.birthday;
 					document.getElementsByName('gender')[0].value = vue_app.pet.gender;
 					document.getElementsByName('breed')[0].value = vue_app.pet.breed;
+				}
+			});
+	}
+}
+
+function loadClient(fill_form) {
+	var client = getClient();
+	vue_app.pet_id = parseInt(getHrefInfo());
+	var headers = { 'accept-language': getLanguage()};
+	if (client) {
+		axios
+			.get('http://127.0.0.1:8000/api/clients/' + getHrefInfo(), 
+				 {
+					 headers: headers
+				 })
+			.then(response => {
+				vue_app.view_client = response.data;
+				vue_app.view_client.registered = vue_app.view_client.registered.substr(0, 10);
+				if (vue_app.view_client.id == vue_app.client.id) {
+					vue_app.display_edit_client = 'default';
+				} else {
+					vue_app.display_edit_client = 'none';
+				}
+				
+				if (fill_form) {
+					/*document.getElementsByName('name')[0].value = vue_app.pet.name;
+					document.getElementsByName('kind')[0].value = vue_app.pet.kind;
+					document.getElementsByName('description')[0].value = vue_app.pet.description;
+					document.getElementsByName('birthday')[0].value = vue_app.pet.birthday;
+					document.getElementsByName('gender')[0].value = vue_app.pet.gender;
+					document.getElementsByName('breed')[0].value = vue_app.pet.breed;*/
 				}
 			});
 	}

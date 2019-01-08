@@ -1,4 +1,6 @@
-﻿function setLanguageFlag(language) {
+﻿var link_delimiter = '?';
+
+function setLanguageFlag(language) {
 	document.getElementById('language_flag').src = './static/img/' + language + '-flag.png';
 }
 

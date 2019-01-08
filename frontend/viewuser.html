@@ -11,8 +11,10 @@
 	<script src="./static/js/utils.js"></script>
 	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
 	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
+	<script type="text/javascript" src="static/js/third-party/d3.v4.min.js"></script>
+	<script type="text/javascript" src="static/js/third-party/d3-selection-multi.v1.min.js"></script>
 </head>
-<body onload="checkLogin()">
+<body onload="checkLogin(); loadClient();">
 	<div id="vueapp">
 		<nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom: 0px">
 			<div class="container-fluid">
@@ -40,10 +42,10 @@
 			<div class="row">
 				<div class="col-sm-3 col-md-2 sidebar">
 					<ul class="nav nav-sidebar">
-						<li class="active"><a href="./mypets.html">{{ literals.my_pets[language_id] }}</a></li>
+						<li><a href="./mypets.html">{{ literals.my_pets[language_id] }}</a></li>
 						<li><a href="">{{ literals.my_friends[language_id] }}</a></li>
 						<li><a href="">{{ literals.messages[language_id] }}</a></li>
-						<li><a href="./users.html">{{ literals.users[language_id] }}</a></li>
+						<li class="active"><a href="./users.html">{{ literals.users[language_id] }}</a></li>
 						<li><a href="">{{ literals.shops[language_id] }}</a></li>
 					</ul>
 				</div>
@@ -51,26 +53,50 @@
         </div>
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">{{ literals.my_pets[language_id] }}</h1>
-
-			<ol>
-				<div v-for="pet in pets">
-					<a :href="'./viewpet.html?' + pet.id"> <img :src="'http://127.0.0.1:8000' + pet.avatar" class="img-circle pet_small_photo"> </a>
-					<a :href="'./viewpet.html?' + pet.id"> {{ pet.name }} </a>
-					<hr>
+			<h1 class="page-header">{{ view_client.name + ' ' + view_client.surname }}</h1>
+			<div class="row placeholders">
+				<div class="col-xs-6 col-sm-3 placeholder">
+					<img :src="'http://127.0.0.1:8000' + view_client.avatar" class="pet_big_photo"> </img>
 				</div>
-				<div>
-					<a href="./addpet.html"> <img src="./static/img/add.png" class="img-circle pet_small_photo"> </a>
-					<a href="./addpet.html"> {{ literals.add_new_pet[language_id] }} </a>
-					<hr>
+				<div class="col-sm-9" contenteditable="false">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							{{ literals.personal_info[language_id] }}.
+							<a class="clickable" :href="'./edituser.html?' + pet_id" :style="'display:' + display_edit_client">{{ literals.edit[language_id] }}. </a>
+						</div>
+						<table class = "table">
+							<tr>
+								<td class="col-sm-2 text-left">{{ literals.username[language_id] }}: </td>
+								<td class="col-sm-8 text-left">{{ view_client.username }}</td>
+							</tr>
+							<tr>
+								<td class="col-sm-2 text-left">{{ literals.full_name[language_id] }}: </td>
+								<td class="col-sm-8 text-left">{{ view_client.name + ' ' + view_client.surname }}</td>
+							</tr>
+							<tr>
+								<td class="col-sm-2 text-left">{{ literals.address[language_id] }}: </td>
+								<td class="col-sm-8 text-left">{{ view_client.address }}</td>
+							</tr>
+							<tr>
+								<td class="col-sm-2 text-left">{{ literals.registration_date[language_id] }}: </td>
+								<td class="col-sm-8 text-left">{{ view_client.registered }}</td>
+							</tr>
+							<tr>
+								<td class="col-sm-2 text-left">{{ literals.pets[language_id] }}: </td>
+								<td class="col-sm-8 text-left">{{ view_client_pets_list[language_id] }}</td>
+							</tr>
+						</table>
+					</div>	
 				</div>
-			</ol>
+			</div>
 		</div>
+		
 	</div>
+	
 </body>
 
 <script src="./static/js/settings.js"></script>
 <script src="./static/js/vueapp.js"></script>
-<script src="./static/js/main.js"></script>
+<script src="./static/js/view_user.js"></script>
 
 </html>

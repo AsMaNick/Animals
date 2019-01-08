@@ -4,7 +4,11 @@
 		pet: null,
 		pet_id: null,
 		pets: [],
+		users: [],
 		client: getClient(),
+		view_client: null,
+		view_client_pets_list: null,
+		display_edit_client: null,
 		language_id: getLanguageId(getLanguage()),
 		add_edit_type: 0,
 		
@@ -33,7 +37,7 @@
 			my_pets: ['My pets', 'Мої домашні тварини'],
 			my_friends: ['My friends', 'Мої друзі'],
 			messages: ['Messages', 'Повідомлення'],
-			search: ['Search', 'Пошук'],
+			users: ['Users', 'Користувачі'],
 			shops: ['Shops', 'Магазини'],
 			
 			add_new_pet: ['Add new pet', 'Додати нову домашню тваринку'],
@@ -60,7 +64,11 @@
 			edit: ['Edit', 'Редагувати'],
 			
 			temperature: ['Temperature', 'Температура'],
-			pulse: ['Pulse', 'Пульс']
+			pulse: ['Pulse', 'Пульс'],
+			
+			registration_date: ['Registration date', 'Дата реєстрації'],
+			full_name: ['Full name', 'Повне ім\'я'],
+			pets: ['Pets', 'Домашні тварини'],
 		},
 	}
 });

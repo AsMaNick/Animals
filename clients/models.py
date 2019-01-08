@@ -18,6 +18,7 @@ class Client(models.Model):
                                })
     address = models.CharField(max_length=100, blank=True, default='')
     password_hash = models.IntegerField()
+    avatar = models.ImageField(upload_to='pets', blank=True, default='clients/user.png')
 
     class Meta:
         ordering = ('registered',)

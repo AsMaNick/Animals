@@ -62,7 +62,7 @@ function addpet() {
 		.then(response => { 
 			console.log(response);
 			if (response.status == 201) {
-				window.location.href = rawHref() + '/../viewpet.html#' + pet_id.toString();
+				window.location.href = rawHref() + '/../viewpet.html' + link_delimiter + pet_id.toString();
 			} else {
 			}
 		});

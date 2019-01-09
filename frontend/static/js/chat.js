@@ -58,5 +58,11 @@ function changeChat(chat_id) {
 	}
 }
 
+function keyUp(event) {
+	if (event.keyCode === 13) {
+		document.getElementById("send_message_img").click();
+	}
+}
+
 loadChats();
 setInterval(function() { loadChats(); }, 2000);

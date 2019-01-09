@@ -8,7 +8,7 @@ from messages.serializers import MessageSerializer, MessageSerializerFull
 
 
 @api_view(['GET', 'POST'])
-@parser_classes((MultiPartParser, FormParser))
+@parser_classes((JSONParser, ))
 @csrf_exempt
 def messages_list(request, pk):
     """
@@ -20,10 +20,9 @@ def messages_list(request, pk):
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':
-        return ''
         data = request.data.copy()
-        data['owner'] = pk
-        serializer = PetSerializer(data=data)
+        data['chat'] = pk
+        serializer = MessageSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)

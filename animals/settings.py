@@ -45,10 +45,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'clients',
     'pets',
-    'corsheaders',
-    'sorl.thumbnail',
     'logs_from_bracelet',
     'friends',
+    'chats',
+    'messages',
+    'corsheaders',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [

@@ -6,11 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="./static/third-party/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="./static/css/styles.css">
+	<link rel="stylesheet" href="./static/css/chat.css">
 	<script src="./static/js/third-party/jquery.min.js"></script>
 	<script src="./static/third-party/bootstrap/js/bootstrap.min.js"></script>
 	<script src="./static/js/utils.js"></script>
 	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
 	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
+	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet"
 </head>
 <body onload="checkLogin()">
 	<div id="vueapp">
@@ -52,6 +55,47 @@
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h1 class="page-header">{{ literals.messages[language_id] }}</h1>
+			<div class="messaging">
+			  <div class="inbox_msg">
+				<div class="inbox_people">
+				  <div class="headind_srch">
+					<div class="recent_heading">
+					  <h4>Recent</h4>
+					</div>
+				  </div>
+				  <div class="inbox_chat">
+					<div class="chat_list" v-for="chat in chats">
+					  <div class="chat_people">
+						<div class="chat_img"> <img :src="'http://127.0.0.1:8000' + chat.second_user_full.avatar" class="img-circle"> </div>
+						<div class="chat_ib">
+						  <h5>{{ chat.second_user_full.username }} <span class="chat_date">{{ getShortTimestamp(chat.last_message.timestamp) }}</span></h5>
+						  <p>{{ getShortMessage(chat.last_message) }}</p>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				<div class="mesgs">
+				  <div class="msg_history" id="message_box">
+					<div :class="getTypeMessage1(message)" v-for="message in getCurrentChatMessages()">
+					  <div :class="getImgTypeMessage(message)"> <img :src="'http://127.0.0.1:8000' + message.from_user_full.avatar" class="img-circle"> </div>
+					  <div :class="getTypeMessage2(message)">
+						<div :class="getTypeMessage3(message)">
+						  <p>{{ message.message }}</p>
+						  <span class="time_date">{{ getLongTimestamp(message.timestamp) }}</span></div>
+					  </div>
+					</div>
+				  </div>
+				  <div class="type_msg">
+					<div class="input_msg_write">
+					  <input type="text" class="write_msg" placeholder="Type a message" />
+					  <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+			
 		</div>
 	</div>
 </body>
@@ -59,5 +103,6 @@
 <script src="./static/js/settings.js"></script>
 <script src="./static/js/vueapp.js"></script>
 <script src="./static/js/main.js"></script>
+<script src="./static/js/chat.js"></script>
 
 </html>

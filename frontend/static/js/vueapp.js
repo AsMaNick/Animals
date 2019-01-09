@@ -14,6 +14,9 @@
 		add_remove_friend_type: 0,
 		only_friends_type: 0,
 		menu_item_classes: ['active', ''],
+		chats: null,
+		current_chat: 0,
+		
 		literals: {
 			languages: ['english', 'українська'],
 			sign_up: ['Sign Up', 'Зареєструватися'],
@@ -73,6 +76,75 @@
 			pets: ['Pets', 'Домашні тварини'],
 			write_message: ['Write message', 'Написати повідомлення'],
 			add_to_friends: [['Add to friends', 'Долучити до друзів'], ['Remove from friends', 'Видалити з друзів']],
+			you: ['You', 'Ви'],
+		},
+	},
+	methods: {
+		getCurrentChatMessages: function() {
+			if (this.chats && 0 <= this.current_chat && this.current_chat < this.chats.length) {
+				return this.chats[this.current_chat].messages;
+			}				
+			return null;
+		},
+		
+		isSender: function(message) {
+			return this.client.id == message.from_user_full.id;
+		},
+		
+		getShortMessage: function(message) {
+			var s = '';
+			if (this.isSender(message)) {
+				s += this.literals.you[this.language_id] + ': ';
+			}
+			
+			for (var i = 0; i < message.message.length; ++i) {
+				if (message.message[i] == '\n' || message.message[i] == '\t') {
+					s += ' ';
+				} else {
+					s += message.message[i];
+				}
+			}
+			var max_length = 45;
+			if (s.length > max_length) {
+				s = s.substr(0, max_length - 3) + '...';
+			}
+			return s;
+		},
+		
+		getShortTimestamp: function(timestamp) {
+			return timestamp.substr(0, 10);
+		},
+		
+		getLongTimestamp: function(timestamp) {
+			return timestamp.substr(11, 8) + ' | ' + this.getShortTimestamp(timestamp);
+		},
+		
+		getTypeMessage1: function(message) {
+			if (this.isSender(message)) {
+				return 'incoming_msg';
+			}
+			return 'outcoming_msg';
+		},
+		
+		getTypeMessage2: function(message) {
+			if (this.isSender(message)) {
+				return 'received_msg';
+			}
+			return 'outgoing_msg';
+		},
+		
+		getTypeMessage3: function(message) {
+			if (this.isSender(message)) {
+				return 'received_withd_msg';
+			}
+			return 'sent_msg';
+		},
+		
+		getImgTypeMessage: function(message) {
+			if (this.isSender(message)) {
+				return 'incoming_msg_img';
+			}
+			return 'outgoing_msg_img';
 		},
 	}
 });

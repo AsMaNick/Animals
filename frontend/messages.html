@@ -41,9 +41,9 @@
 				<div class="col-sm-3 col-md-2 sidebar">
 					<ul class="nav nav-sidebar">
 						<li><a href="./mypets.html">{{ literals.my_pets[language_id] }}</a></li>
-						<li :class="menu_item_classes[only_friends_type ^ 1]"><a href="./users.html?friends">{{ literals.my_friends[language_id] }}</a></li>
-						<li><a href="./messages.html">{{ literals.messages[language_id] }}</a></li>
-						<li :class="menu_item_classes[only_friends_type]"><a href="./users.html">{{ literals.users[language_id] }}</a></li>
+						<li><a href="./users.html?friends">{{ literals.my_friends[language_id] }}</a></li>
+						<li class="active"><a href="">{{ literals.messages[language_id] }}</a></li>
+						<li><a href="./users.html">{{ literals.users[language_id] }}</a></li>
 						<li><a href="">{{ literals.shops[language_id] }}</a></li>
 					</ul>
 				</div>
@@ -51,15 +51,7 @@
         </div>
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">{{ [literals.users[language_id], literals.my_friends[language_id]][only_friends_type] }}</h1>
-
-			<ol>
-				<div v-for="user in users">
-					<a :href="'./viewuser.html?' + user.id"> <img :src="'http://127.0.0.1:8000' + user.avatar" class="img-circle pet_small_photo"> </a>
-					<a :href="'./viewuser.html?' + user.id"> {{ user.name + ' ' + user.surname }} </a>
-					<hr>
-				</div>
-			</ol>
+			<h1 class="page-header">{{ literals.messages[language_id] }}</h1>
 		</div>
 	</div>
 </body>

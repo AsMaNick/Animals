@@ -11,7 +11,9 @@
 		is_i: null,
 		language_id: getLanguageId(getLanguage()),
 		add_edit_type: 0,
-		
+		add_remove_friend_type: 0,
+		only_friends_type: 0,
+		menu_item_classes: ['active', ''],
 		literals: {
 			languages: ['english', 'українська'],
 			sign_up: ['Sign Up', 'Зареєструватися'],
@@ -70,7 +72,7 @@
 			full_name: ['Full name', 'Повне ім\'я'],
 			pets: ['Pets', 'Домашні тварини'],
 			write_message: ['Write message', 'Написати повідомлення'],
-			add_to_friends: ['Add to friends', 'Долучити до друзів'],
+			add_to_friends: [['Add to friends', 'Долучити до друзів'], ['Remove from friends', 'Видалити з друзів']],
 		},
 	}
 });

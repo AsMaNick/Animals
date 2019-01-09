@@ -22,4 +22,40 @@
 		});
 }
 
+function isOurFriend(client_id) {
+	var headers = { 'accept-language': getLanguage()};
+	axios
+		.get('http://127.0.0.1:8000/api/clients/' + getClient().id.toString() + '/friends/', 
+			 {
+				 headers: headers
+			 })
+		.then(response => {
+			vue_app.add_remove_friend_type = 0;
+			for (var friend of response.data) {
+				
+				if (client_id == friend.id) {
+					vue_app.add_remove_friend_type = 1;
+					break;
+				}
+			}
+		});
+}
+
 loadPetsClient(getHrefInfo());
+isOurFriend(getHrefInfo());
+
+function addToFriends() {
+	var headers = { 'accept-language': getLanguage()};
+	var data = {
+		'friend': parseInt(getHrefInfo())
+	};
+	console.log('http://127.0.0.1:8000/api/clients/' + getClient().id.toString() + '/friends/');
+	axios
+		.post('http://127.0.0.1:8000/api/clients/' + getClient().id.toString() + '/friends/', data,
+			 {
+				 headers: headers
+			 })
+		.then(response => {
+			vue_app.add_remove_friend_type ^= 1;
+		});
+}

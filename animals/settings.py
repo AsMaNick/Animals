@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'sorl.thumbnail',
     'logs_from_bracelet',
+    'friends',
 ]
 
 MIDDLEWARE = [

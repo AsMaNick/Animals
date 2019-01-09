@@ -37,9 +37,9 @@ img{ max-width:100%;}
 }
 .srch_bar .input-group-addon { margin: 0 0 0 -27px;}
 
-.chat_ib h5{ font-size:15px; color:#464646; margin:0 0 8px 0;}
+.chat_ib h5{ font-size:15px; color:#464646; margin:0 0 8px 0; font-weight: bold;}
 .chat_ib h5 span{ font-size:13px; float:right;}
-.chat_ib p{ font-size:14px; color:#989898; margin:auto}
+.chat_ib p{ font-size:14px; color:#989898; margin:auto; color: black;}
 .chat_img {
   float: left;
   width: 11%;
@@ -56,9 +56,18 @@ img{ max-width:100%;}
   margin: 0;
   padding: 18px 16px 10px;
 }
-.inbox_chat { height: 550px; overflow-y: scroll;}
+.chat_list:hover {
+	background: #ebebeb;
+}
 
-.active_chat{ background:#ebebeb;}
+.inbox_chat { height: 460px; overflow-y: scroll;}
+
+.active_chat{ 
+  background: #bfecbf;
+  color: white;
+}
+
+.active_chat:hover { background:#bfecbf;}
 
 .incoming_msg {
 	margin:0 0 20px;
@@ -104,10 +113,10 @@ img{ max-width:100%;}
 }
 
  .sent_msg p {
-  background: #05728f none repeat scroll 0 0;
+  background: #bfecbf none repeat scroll 0 0;
   border-radius: 3px;
   font-size: 14px;
-  margin: 0; color:#fff;
+  margin: 0; color:#000000;
   padding: 5px 10px 5px 12px;
   width:100%;
 }
@@ -131,21 +140,22 @@ img{ max-width:100%;}
 }
 
 .type_msg {border-top: 1px solid #c4c4c4;position: relative;}
-.msg_send_btn {
-  background: #05728f none repeat scroll 0 0;
-  border: medium none;
-  border-radius: 50%;
-  color: #fff;
-  cursor: pointer;
-  font-size: 17px;
-  height: 33px;
-  position: absolute;
-  right: 0;
-  top: 11px;
-  width: 33px;
-}
-.messaging { padding: 0 0 50px 0;}
+
+.messaging { padding: 0 0 0 0;}
 .msg_history {
-  height: 516px;
+  height: 412px;
   overflow-y: auto;
+}
+
+.button_send_message{
+	background: transparent;
+	border: none;
+	position: absolute;
+	right: 5px;
+	top: 13px;
+	width: 35px;
+	padding:0;
+}
+.button_send_message:focus {
+    outline: none;
 }

@@ -87,6 +87,13 @@
 			return null;
 		},
 		
+		isActive: function(chat) {
+			if (0 <= this.current_chat && this.current_chat < this.chats.length && chat.id == this.chats[this.current_chat].id) {
+				return 'active_chat';
+			}
+			return '';
+		},
+		
 		isSender: function(message) {
 			return this.client.id == message.from_user_full.id;
 		},

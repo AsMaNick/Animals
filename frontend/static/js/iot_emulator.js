@@ -1,3 +1,5 @@
+var notified_pets = {};
+
 var vue_app = new Vue({
 	el: '.table',
 	data: {
@@ -49,6 +51,24 @@ function uploadData() {
 			.then(response => {
 				console.log(response.data);
 			});
+		if (!(id in notified_pets)) {
+			if (temperature < 36) {
+				notifyUser(pet.owner, pet.name + ' has too low temperature: ' + (Math.round(temperature * 10) / 10).toString());
+				notified_pets[id] = true;
+			} else if (temperature > 40) {
+				notifyUser(pet.owner, pet.name + ' has too high temperature: ' + (Math.round(temperature * 10) / 10).toString());
+				notified_pets[id] = true;
+			}
+		}
+		if (!(-id in notified_pets)) {
+			if (pulse < 20) {
+				notifyUser(pet.owner, pet.name + ' has too low pulse: ' + (Math.round(pulse * 10) / 10).toString());
+				notified_pets[-id] = true;
+			} else if (pulse > 300) {
+				notifyUser(pet.owner, pet.name + ' has too high pulse: ' + (Math.round(pulse * 10) / 10).toString());
+				notified_pets[-id] = true;
+			}
+		}
 	}
 }
 

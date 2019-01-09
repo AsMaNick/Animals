@@ -64,7 +64,7 @@
 					</div>
 				  </div>
 				  <div class="inbox_chat">
-					<div class="chat_list" v-for="chat in chats">
+					<div :class="'clickable chat_list ' + isActive(chat)" v-for="chat in chats" :onclick="'changeChat(' + chat.id + ')'">
 					  <div class="chat_people">
 						<div class="chat_img"> <img :src="'http://127.0.0.1:8000' + chat.second_user_full.avatar" class="img-circle"> </div>
 						<div class="chat_ib">
@@ -78,7 +78,11 @@
 				<div class="mesgs">
 				  <div class="msg_history" id="message_box">
 					<div :class="getTypeMessage1(message)" v-for="message in getCurrentChatMessages()">
-					  <div :class="getImgTypeMessage(message)"> <img :src="'http://127.0.0.1:8000' + message.from_user_full.avatar" class="img-circle"> </div>
+					  <div :class="getImgTypeMessage(message)"> 
+					    <a style="clickable" :href="'./viewuser.html?' + message.from_user_full.id">
+						  <img :src="'http://127.0.0.1:8000' + message.from_user_full.avatar" class="img-circle"> 
+						</a>
+					  </div>
 					  <div :class="getTypeMessage2(message)">
 						<div :class="getTypeMessage3(message)">
 						  <p>{{ message.message }}</p>
@@ -88,8 +92,10 @@
 				  </div>
 				  <div class="type_msg">
 					<div class="input_msg_write">
-					  <input type="text" class="write_msg" placeholder="Type a message" />
-					  <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+					  <input type="text" class="write_msg" placeholder="Type a message" id="message_text">
+					  <a class="button_send_message"> 
+						<img class="clickable img-circle" src="static/img/send_message.svg" onclick="sendMessage()"> </img>
+					  </a>
 					</div>
 				  </div>
 				</div>

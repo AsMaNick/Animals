@@ -69,6 +69,7 @@ function sendMessage() {
 			 })
 		.then(response => {
 			document.getElementById('message_text').value = '';
+			document.getElementById('message_text').focus();
 			loadChats();
 		});
 }
@@ -90,5 +91,6 @@ function keyUp(event) {
 	}
 }
 
+document.getElementById('message_text').focus();
 loadChats();
 setInterval(function() { loadChats(); }, 2000);

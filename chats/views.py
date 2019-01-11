@@ -13,7 +13,7 @@ from django.db.models import Q
 @csrf_exempt
 def chats_list(request, pk):
     """
-    List all pets of some client, or create a new pet.
+    List all chats of some client, or create a new chat.
     """
     if request.method == 'GET':
         chats = Chat.objects.filter(Q(first_user=pk) | Q(second_user=pk))
@@ -21,16 +21,15 @@ def chats_list(request, pk):
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':
-        return ''
         data = request.data.copy()
-        data['creator'] = pk
-        serializer = FriendSerializer(data=data)
+        data['first_user'] = pk
+        if data['first_user'] > data['second_user']:
+            data['first_user'], data['second_user'] = data['second_user'], data['first_user']
+        serializer = ChatSerializer(data=data)
         if serializer.is_valid():
-            friend = Friend.objects.filter(creator=data['creator'], friend=data['friend'])
-            if len(friend) == 0:
-                serializer.save()
-                return JsonResponse(serializer.data, status=201)
-            else:
-                friend[0].delete()
-                return JsonResponse({}, status=204)
-        return JsonResponse(serializer.errors, status=200)
+            serializer.save()
+        try:
+            chat = Chat.objects.get(Q(first_user=data['first_user']) & Q(second_user=data['second_user']))
+            return JsonResponse({'chat_id': chat.id}, status=201)
+        except Exception as e:
+            return JsonResponse(serializer.errors, status=200)

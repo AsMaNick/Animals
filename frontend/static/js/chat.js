@@ -25,6 +25,14 @@ function loadChats() {
 					}
 					vue_app.chats[i]['last_message'] = vue_app.chats[i].messages[vue_app.chats[i].messages.length - 1];
 				}
+				if (last_scroll_height == -1 && getHrefInfo() != "") {
+					for (var i = 0; i < vue_app.chats.length; ++i) {
+						if (vue_app.chats[i].id == parseInt(getHrefInfo())) {
+							vue_app.current_chat = i;
+							break;
+						}
+					}
+				}
 				setTimeout(function() { messagesToTheEnd(); }, 100);
 			});
 	}

@@ -7,7 +7,8 @@ class Friend(models.Model):
     friend = models.ForeignKey(Client, on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = ('creator', 'friend')
+        #unique_together = ('creator', 'friend')
+        pass
 
     def __str__(self):
         return self.creator.name + ' ' + self.friend.name

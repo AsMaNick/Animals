@@ -68,7 +68,7 @@
 					  <div class="chat_people">
 						<div class="chat_img"> <img :src="'http://127.0.0.1:8000' + chat.second_user_full.avatar" class="img-circle"> </div>
 						<div class="chat_ib">
-						  <h5>{{ chat.second_user_full.username }} <span class="chat_date">{{ getShortTimestamp(chat.last_message.timestamp) }}</span></h5>
+						  <h5>{{ chat.second_user_full.username }} <span class="chat_date">{{ getShortTimestamp(chat.last_message) }}</span></h5>
 						  <p>{{ getShortMessage(chat.last_message) }}</p>
 						</div>
 					  </div>
@@ -86,7 +86,7 @@
 					  <div :class="getTypeMessage2(message)">
 						<div :class="getTypeMessage3(message)">
 						  <p>{{ message.message }}</p>
-						  <span class="time_date">{{ getLongTimestamp(message.timestamp) }}</span></div>
+						  <span class="time_date">{{ getLongTimestamp(message) }}</span></div>
 					  </div>
 					</div>
 				  </div>

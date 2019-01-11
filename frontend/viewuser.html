@@ -59,7 +59,9 @@
 					<img :src="'http://127.0.0.1:8000' + view_client.avatar" class="pet_big_photo"> </img>
 					<table class="table">
 						<tr>
-							<td class="col-sm-2" :style="'padding-top: 0px; display:' + ['default', 'none'][is_i]">{{ literals.write_message[language_id] }}</td>
+							<td class="col-sm-2" :style="'padding-top: 0px; display:' + ['default', 'none'][is_i]">
+								<a class="clickable action_field" onclick="writeMessage()"> {{ literals.write_message[language_id] }} </a>
+							</td>
 						</tr>
 						<tr>
 							<td class="col-sm-2" :style="'display:' + ['default', 'none'][is_i]">

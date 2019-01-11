@@ -58,3 +58,23 @@ function addToFriends() {
 			vue_app.add_remove_friend_type ^= 1;
 		});
 }
+
+function writeMessage() {
+	var headers = { 'accept-language': getLanguage()};
+	var second_user = parseInt(getHrefInfo());
+	var data = {
+		'second_user': second_user
+	};
+	axios
+		.post('http://127.0.0.1:8000/api/clients/' + getClient().id.toString() + '/chats/', data,
+			 {
+				 headers: headers
+			 })
+		.then(response => {
+			if ('chat_id' in response.data) {
+				window.location.href = rawHref() + '/../messages.html' + link_delimiter + response.data['chat_id'].toString();
+			} else {
+				console.log(response);
+			}
+		});
+}

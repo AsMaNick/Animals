@@ -7,7 +7,7 @@ from messages.serializers import MessageSerializer, MessageSerializerFull
 class ChatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chat
-        fields = ('first_user', 'second_user')
+        fields = ('created', 'first_user', 'second_user')
 
 
 class ChatSerializerWithId(serializers.ModelSerializer):
@@ -17,4 +17,4 @@ class ChatSerializerWithId(serializers.ModelSerializer):
 
     class Meta:
         model = Chat
-        fields = ('id', 'first_user_full', 'second_user_full', 'messages')
+        fields = ('id', 'created', 'first_user_full', 'second_user_full', 'messages')

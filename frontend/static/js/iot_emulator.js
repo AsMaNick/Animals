@@ -43,13 +43,11 @@ function uploadData() {
 			'pulse': pulse,
 			'timestamp': getDateTime()
 		};
-		console.log(data);
 		axios
 			.post('http://127.0.0.1:8000/api/pets/' + id.toString() + '/logs/', JSON.stringify(data), {
 																					headers: headers
 																				})
 			.then(response => {
-				console.log(response.data);
 			});
 		if (!(id in notified_pets)) {
 			if (temperature < 36) {

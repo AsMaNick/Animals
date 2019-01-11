@@ -6,6 +6,7 @@ from clients.models import Client
 class Chat(models.Model):
     first_user = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='first_user')
     second_user = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='second_user')
+    created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         unique_together = ('first_user', 'second_user')

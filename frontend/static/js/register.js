@@ -41,7 +41,9 @@ function register() {
 				//break;
 			}
 		} else if (response.status == 201) {
-			window.location.href += '/../login.html';
+			notifyUser(response.data.id, 'Welcome to EasyPet!').then(response => {
+				window.location.href += '/../login.html';
+			});
 		}
 	});
 }

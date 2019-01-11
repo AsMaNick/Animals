@@ -160,5 +160,13 @@
 			}
 			return 'outgoing_msg_img';
 		},
+		
+		getDisplayUser: function(user) {
+			var system_id = 16;
+			if (user.id == system_id) {
+				return 'none';
+			}
+			return 'default';
+		}
 	}
 });

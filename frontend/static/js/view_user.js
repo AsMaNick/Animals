@@ -49,7 +49,6 @@ function addToFriends() {
 	var data = {
 		'friend': parseInt(getHrefInfo())
 	};
-	console.log('http://127.0.0.1:8000/api/clients/' + getClient().id.toString() + '/friends/');
 	axios
 		.post('http://127.0.0.1:8000/api/clients/' + getClient().id.toString() + '/friends/', data,
 			 {

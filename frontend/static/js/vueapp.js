@@ -77,6 +77,7 @@
 			write_message: ['Write message', 'Написати повідомлення'],
 			add_to_friends: [['Add to friends', 'Долучити до друзів'], ['Remove from friends', 'Видалити з друзів']],
 			you: ['You', 'Ви'],
+			no_messages: ['No messages yet...', 'Ще немає жодного повідомлення...'],
 		},
 	},
 	methods: {
@@ -99,6 +100,9 @@
 		},
 		
 		getShortMessage: function(message) {
+			if (!message) {
+				return this.literals.no_messages[this.language_id];
+			}
 			var s = '';
 			if (this.isSender(message)) {
 				s += this.literals.you[this.language_id] + ': ';
@@ -118,12 +122,15 @@
 			return s;
 		},
 		
-		getShortTimestamp: function(timestamp) {
-			return timestamp.substr(0, 10);
+		getShortTimestamp: function(message) {
+			if (message) {
+				return message.timestamp.substr(0, 10);
+			}
+			return '';
 		},
 		
-		getLongTimestamp: function(timestamp) {
-			return timestamp.substr(11, 8) + ' | ' + this.getShortTimestamp(timestamp);
+		getLongTimestamp: function(message) {
+			return message.timestamp.substr(11, 8) + ' | ' + this.getShortTimestamp(message);
 		},
 		
 		getTypeMessage1: function(message) {

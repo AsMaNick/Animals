@@ -8,6 +8,12 @@ function messagesToTheEnd() {
 	}
 }
 
+function compareChats(a, b) {
+	var da = new Date(a.last_message.timestamp);
+	var db = new Date(b.last_message.timestamp);
+	return db.getTime() - da.getTime();
+}
+
 function loadChats() {
 	var client = getClient();
 	var headers = { 'accept-language': getLanguage()};
@@ -23,14 +29,25 @@ function loadChats() {
 					if (vue_app.chats[i].second_user_full.username == client.username) {
 						vue_app.chats[i].first_user_full = [vue_app.chats[i].second_user_full, vue_app.chats[i].second_user_full = vue_app.chats[i].first_user_full][0];
 					}
-					vue_app.chats[i]['last_message'] = vue_app.chats[i].messages[vue_app.chats[i].messages.length - 1];
+					if (vue_app.chats[i].messages.length > 0) {
+						vue_app.chats[i]['last_message'] = vue_app.chats[i].messages[vue_app.chats[i].messages.length - 1];
+					} else {
+						vue_app.chats[i]['last_message'] = {
+							'timestamp': vue_app.chats[i].created
+						};
+					}
 				}
-				if (last_scroll_height == -1 && getHrefInfo() != "") {
-					for (var i = 0; i < vue_app.chats.length; ++i) {
-						if (vue_app.chats[i].id == parseInt(getHrefInfo())) {
-							vue_app.current_chat = i;
-							break;
+				vue_app.chats.sort(compareChats);
+				if (last_scroll_height == -1) {
+					if (getHrefInfo() != "") {
+						for (var i = 0; i < vue_app.chats.length; ++i) {
+							if (vue_app.chats[i].id == parseInt(getHrefInfo())) {
+								vue_app.current_chat = vue_app.chats[i].id;
+								break;
+							}
 						}
+					} else if (vue_app.chats.length) {
+						vue_app.current_chat = vue_app.chats[0].id;
 					}
 				}
 				setTimeout(function() { messagesToTheEnd(); }, 100);
@@ -46,7 +63,7 @@ function sendMessage() {
 		'message': message
 	}
 	axios
-		.post('http://127.0.0.1:8000/api/chats/' + vue_app.chats[vue_app.current_chat].id + '/messages/', data,
+		.post('http://127.0.0.1:8000/api/chats/' + vue_app.current_chat + '/messages/', data,
 			 {
 				 headers: headers
 			 })
@@ -59,7 +76,8 @@ function sendMessage() {
 function changeChat(chat_id) {
 	for (var i = 0; i < vue_app.chats.length; ++i) {
 		if (vue_app.chats[i].id == chat_id) {
-			vue_app.current_chat = i;
+			console.log(chat_id);
+			vue_app.current_chat = chat_id;
 			setTimeout(function() { messagesToTheEnd(); }, 100);
 			break;
 		}

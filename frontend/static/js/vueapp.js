@@ -82,14 +82,24 @@
 	},
 	methods: {
 		getCurrentChatMessages: function() {
-			if (this.chats && 0 <= this.current_chat && this.current_chat < this.chats.length) {
-				return this.chats[this.current_chat].messages;
+			if (!this.chats) {
+				return null;
+			}
+			var current_chat_pos = -1;
+			for (var i = 0; i < this.chats.length; ++i) {
+				if (this.chats[i].id == this.current_chat) {
+					current_chat_pos = i;
+					break;
+				}
+			}
+			if (0 <= current_chat_pos && current_chat_pos < this.chats.length) {
+				return this.chats[current_chat_pos].messages;
 			}				
 			return null;
 		},
 		
 		isActive: function(chat) {
-			if (0 <= this.current_chat && this.current_chat < this.chats.length && chat.id == this.chats[this.current_chat].id) {
+			if (chat.id == this.current_chat) {
 				return 'active_chat';
 			}
 			return '';
@@ -100,7 +110,7 @@
 		},
 		
 		getShortMessage: function(message) {
-			if (!message) {
+			if (!message || !message.message) {
 				return this.literals.no_messages[this.language_id];
 			}
 			var s = '';

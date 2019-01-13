@@ -1,6 +1,7 @@
 package com.example.aslandukovmatvej.myapplication
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Build.VERSION_CODES.P
 import android.os.Bundle
@@ -17,6 +18,9 @@ import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.w3c.dom.Text
+
+var username = ""
 
 class PetsListActivity:Activity() {
 
@@ -25,6 +29,10 @@ class PetsListActivity:Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pets_list_activity)
+
+        val clientNameView = findViewById<TextView>(R.id.client_name)
+        username = intent.getStringExtra("username")
+        clientNameView.text = "Hello, $username!"
 
         vRecView = findViewById<RecyclerView>(R.id.recView)
         val client_id = intent.getStringExtra("client_id")
@@ -42,23 +50,6 @@ class PetsListActivity:Activity() {
     fun showRecView(petsList: PetsListApi) {
         vRecView.adapter = RecAdapter(petsList)
         vRecView.layoutManager = LinearLayoutManager(this)
-    }
-
-    fun showLinearLayout(petsList: PetsListApi) {
-        val inflater = layoutInflater
-        for (pet in petsList) {
-            //val list = findViewById<LinearLayout>(R.id.pets_list)
-            //val view = inflater.inflate(R.layout.pet_item, list, false)
-            //view.findViewById<TextView>(R.id.pet_name).text = "Name: " + pet.name
-            //val vAvatar = itemView.findViewById<ImageView>(R.id.pet_avatar)
-            /*view.setOnClickListener {
-                Log.e("CLICK", recipe.id.toString())
-                val i = Intent(this, RecipeDetailActivity::class.java)
-                i.putExtra("recipe_id", recipe.id.toString())
-                startActivity(i)
-            }*/
-            //list.addView(view)
-        }
     }
 }
 
@@ -93,12 +84,31 @@ class RecHolder(view: View):RecyclerView.ViewHolder(view) {
         vName.text = item.name
         val vAvatar = itemView.findViewById<ImageView>(R.id.pet_avatar)
         Picasso.with(vAvatar.context).load("$domain${item.avatar}").into(vAvatar)
+        vName.setOnClickListener {
+            showPet(vName.context, item.id)
+        }
+        vAvatar.setOnClickListener {
+            showPet(vName.context, item.id)
+        }
+    }
+
+    fun showPet(context: Context, pet_id: Int) {
+        val i = Intent(itemView.context, PetDetailActivity::class.java)
+        i.putExtra("pet_id", pet_id.toString())
+        i.putExtra("username", username.toString())
+        context.startActivity(i)
     }
 }
 
 class PetsListApi: ArrayList<Pet> ()
 
 class Pet (
+    val id: Int,
     val name: String,
+    val kind: String,
+    val gender: String,
+    val breed: String,
+    val birthday: String,
+    val description: String,
     val avatar: String
 )

@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity() {
 
             if (username.text.toString() == "" && password.text.toString() == "") {
                 client_id = "9"
+                username.setText("Matvej")
+                password.setText("1234")
             } else if (username.text.toString() == "matvej" && password.text.toString() == "1234") {
                 client_id = "9"
             } else if (username.text.toString() == "XuMuK" && password.text.toString() == "qwerty") {
@@ -47,7 +49,8 @@ class MainActivity : AppCompatActivity() {
             } else {
                 val i = Intent(this, PetsListActivity::class.java)
                 i.putExtra("client_id", client_id)
-                invalid_data_label.text = "";
+                i.putExtra("username", username.text.toString())
+                invalid_data_label.text = ""
                 startActivity(i)
             }
         }

@@ -4,7 +4,7 @@ function getChatId(first_user, second_user) {
 		'second_user': second_user
 	};
 	return axios
-		.post('http://127.0.0.1:8000/api/clients/' + first_user + '/chats/', data,
+		.post(vue_app.DOMAIN + '/api/clients/' + first_user + '/chats/', data,
 			 {
 				 headers: headers
 			 })
@@ -22,7 +22,7 @@ function notifyUser(user_id, message) {
 	}
 	return getChatId(system_id, user_id).then(chat_id => {
 		axios
-			.post('http://127.0.0.1:8000/api/chats/' + chat_id.toString() + '/messages/', data,
+			.post(vue_app.DOMAIN + '/api/chats/' + chat_id.toString() + '/messages/', data,
 				 {
 					 headers: headers
 				 })

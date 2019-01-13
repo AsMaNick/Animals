@@ -27,7 +27,7 @@ function edit_user() {
 	}
 	var client_id = getClient().id;
 	var headers = { 'accept-language': getLanguage(), 'Content-Type': 'Multipart/Form-data'};
-	axios.patch('http://127.0.0.1:8000/api/clients/' + client_id.toString() + '/', form_data,
+	axios.patch(vue_app.DOMAIN + '/api/clients/' + client_id.toString() + '/', form_data,
 																				{
 																					headers: headers
 																				})

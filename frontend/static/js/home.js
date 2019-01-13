@@ -15,7 +15,7 @@ var app2 = new Vue({
   },
   mounted() {
 	axios
-	  .get('http://127.0.0.1:8000/api/clients/' + JSON.parse(localStorage['client']).id.toString() + '/pets/')
+	  .get(vue_app.DOMAIN + '/api/clients/' + JSON.parse(localStorage['client']).id.toString() + '/pets/')
 	  .then(response => {
 		this.pets = response.data;
 	  });

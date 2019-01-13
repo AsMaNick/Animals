@@ -3,13 +3,14 @@ var notified_pets = {};
 var vue_app = new Vue({
 	el: '.table',
 	data: {
+		DOMAIN: 'http://127.0.0.1:8000',
 		pets: [],
 	}
 });
 
 function loadPets() {
 	axios
-		.get('http://127.0.0.1:8000/api/pets/')
+		.get(vue_app.DOMAIN + '/api/pets/')
 		.then(response => {
 			vue_app.pets = response.data;
 		});
@@ -44,7 +45,7 @@ function uploadData() {
 			'timestamp': getDateTime()
 		};
 		axios
-			.post('http://127.0.0.1:8000/api/pets/' + id.toString() + '/logs/', JSON.stringify(data), {
+			.post(vue_app.DOMAIN + '/api/pets/' + id.toString() + '/logs/', JSON.stringify(data), {
 																					headers: headers
 																				})
 			.then(response => {

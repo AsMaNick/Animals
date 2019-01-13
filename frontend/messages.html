@@ -66,7 +66,7 @@
 				  <div class="inbox_chat">
 					<div :class="'clickable chat_list ' + isActive(chat)" v-for="chat in chats" :onclick="'changeChat(' + chat.id + ')'">
 					  <div class="chat_people">
-						<div class="chat_img"> <img :src="'http://127.0.0.1:8000' + chat.second_user_full.avatar" class="img-circle"> </div>
+						<div class="chat_img"> <img :src="DOMAIN + chat.second_user_full.avatar" class="img-circle"> </div>
 						<div class="chat_ib">
 						  <h5>{{ chat.second_user_full.username }} <span class="chat_date">{{ getShortTimestamp(chat.last_message) }}</span></h5>
 						  <p>{{ getShortMessage(chat.last_message) }}</p>
@@ -80,7 +80,7 @@
 					<div :class="getTypeMessage1(message)" v-for="message in getCurrentChatMessages()">
 					  <div :class="getImgTypeMessage(message)"> 
 					    <a style="clickable" :href="'./viewuser.html?' + message.from_user_full.id">
-						  <img :src="'http://127.0.0.1:8000' + message.from_user_full.avatar" class="img-circle"> 
+						  <img :src="DOMAIN + message.from_user_full.avatar" class="img-circle"> 
 						</a>
 					  </div>
 					  <div :class="getTypeMessage2(message)">

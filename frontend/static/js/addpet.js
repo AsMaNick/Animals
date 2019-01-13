@@ -43,7 +43,7 @@ function addpet() {
 	var pet_id = vue_app.pet_id;
 	var headers = { 'accept-language': getLanguage(), 'Content-Type': 'Multipart/Form-data'};
 	if (vue_app.add_edit_type == 0) { // Create new pet
-		axios.post('http://127.0.0.1:8000/api/clients/' + client_id + '/pets/', form_data,
+		axios.post(vue_app.DOMAIN + '/api/clients/' + client_id + '/pets/', form_data,
 																				{
 																					headers: headers
 																				})
@@ -55,7 +55,7 @@ function addpet() {
 			}
 		});
 	} else { // Edit old pet {
-		axios.put('http://127.0.0.1:8000/api/pets/' + pet_id.toString() + '/', form_data,
+		axios.put(vue_app.DOMAIN + '/api/pets/' + pet_id.toString() + '/', form_data,
 																				{
 																					headers: headers
 																				})

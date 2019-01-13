@@ -55,7 +55,7 @@
 
 			<ol>
 				<div v-for="user in users" :style="'display:' + getDisplayUser(user)">
-					<a :href="'./viewuser.html?' + user.id"> <img :src="'http://127.0.0.1:8000' + user.avatar" class="img-circle pet_small_photo"> </a>
+					<a :href="'./viewuser.html?' + user.id"> <img :src="DOMAIN + user.avatar" class="img-circle pet_small_photo"> </a>
 					<a :href="'./viewuser.html?' + user.id"> {{ user.name + ' ' + user.surname }} </a>
 					<hr>
 				</div>

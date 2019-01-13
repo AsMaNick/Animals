@@ -68,7 +68,7 @@ function loadPet(fill_form) {
 	var headers = { 'accept-language': getLanguage()};
 	if (client) {
 		axios
-			.get('http://127.0.0.1:8000/api/pets/' + getHrefInfo(), 
+			.get(vue_app.DOMAIN + '/api/pets/' + getHrefInfo(), 
 				 {
 					 headers: headers
 				 })
@@ -92,7 +92,7 @@ function loadClient(fill_form) {
 	var headers = { 'accept-language': getLanguage()};
 	if (client) {
 		axios
-			.get('http://127.0.0.1:8000/api/clients/' + getHrefInfo(), 
+			.get(vue_app.DOMAIN + '/api/clients/' + getHrefInfo(), 
 				 {
 					 headers: headers
 				 })

@@ -56,7 +56,7 @@
 			<h1 class="page-header">{{ view_client.name + ' ' + view_client.surname }}</h1>
 			<div class="row placeholders">
 				<div class="col-xs-6 col-sm-3 placeholder panel panel-default">
-					<img :src="'http://127.0.0.1:8000' + view_client.avatar" class="pet_big_photo"> </img>
+					<img :src="DOMAIN + view_client.avatar" class="pet_big_photo"> </img>
 					<table class="table">
 						<tr>
 							<td class="col-sm-2" :style="'padding-top: 0px; display:' + ['default', 'none'][is_i]">

@@ -56,7 +56,7 @@
 			<h1 class="page-header">{{ pet.name }}</h1>
 			<div class="row placeholders">
 				<div class="col-xs-6 col-sm-3 placeholder panel panel-default">
-					<img :src="'http://127.0.0.1:8000' + pet.avatar" class="pet_big_photo"> </img>
+					<img :src="DOMAIN + pet.avatar" class="pet_big_photo"> </img>
 				</div>
 				<div class="col-sm-9" contenteditable="false">
 					<div class="panel panel-default">

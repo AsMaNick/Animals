@@ -3,7 +3,7 @@ function loadPets() {
 	var headers = { 'accept-language': getLanguage()};
 	if (client) {
 		axios
-			.get('http://127.0.0.1:8000/api/clients/' + client.id.toString() + '/pets/', 
+			.get(vue_app.DOMAIN + '/api/clients/' + client.id.toString() + '/pets/', 
 				 {
 					 headers: headers
 				 })
@@ -23,7 +23,7 @@ function loadUsers() {
 	}
 	if (client) {
 		axios
-			.get('http://127.0.0.1:8000/api/clients/' + only_friends, 
+			.get(vue_app.DOMAIN + '/api/clients/' + only_friends, 
 				 {
 					 headers: headers
 				 })

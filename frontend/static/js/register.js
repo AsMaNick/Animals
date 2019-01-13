@@ -25,7 +25,7 @@ function register() {
 	var address = document.getElementsByName('address')[0].value;
 	console.log(username, password, repeat_password, address);
 	var headers = { 'accept-language': getLanguage()};
-	axios.post('http://127.0.0.1:8000/api/clients/', JSON.stringify({'username': username,
+	axios.post(vue_app.DOMAIN + '/api/clients/', JSON.stringify({'username': username,
 																	 'name': name,
 																	 'surname': surname,
 																	 'password_hash': password,

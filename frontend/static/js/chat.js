@@ -19,7 +19,7 @@ function loadChats() {
 	var headers = { 'accept-language': getLanguage()};
 	if (client) {
 		axios
-			.get('http://127.0.0.1:8000/api/clients/' + client.id.toString() + '/chats/', 
+			.get(vue_app.DOMAIN + '/api/clients/' + client.id.toString() + '/chats/', 
 				 {
 					 headers: headers
 				 })
@@ -63,7 +63,7 @@ function sendMessage() {
 		'message': message
 	}
 	axios
-		.post('http://127.0.0.1:8000/api/chats/' + vue_app.current_chat + '/messages/', data,
+		.post(vue_app.DOMAIN + '/api/chats/' + vue_app.current_chat + '/messages/', data,
 			 {
 				 headers: headers
 			 })

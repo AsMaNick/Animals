@@ -6,7 +6,7 @@ function login() {
 	clear_errors();
 	var username = document.getElementsByName('username')[0].value;
 	var password = document.getElementsByName('password')[0].value;
-	axios.post('http://127.0.0.1:8000/api/check_client/', JSON.stringify({'username': username,
+	axios.post(vue_app.DOMAIN + '/api/check_client/', JSON.stringify({'username': username,
 																	 'password': password}))
 	.then(response => { 
 		console.log(response);

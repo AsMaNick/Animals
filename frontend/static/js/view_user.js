@@ -1,7 +1,7 @@
 ﻿function loadPetsClient(client_id) {
 	var headers = { 'accept-language': getLanguage()};
 	axios
-		.get('http://127.0.0.1:8000/api/clients/' + client_id.toString() + '/pets/', 
+		.get(vue_app.DOMAIN + '/api/clients/' + client_id.toString() + '/pets/', 
 			 {
 				 headers: headers
 			 })
@@ -25,7 +25,7 @@
 function isOurFriend(client_id) {
 	var headers = { 'accept-language': getLanguage()};
 	axios
-		.get('http://127.0.0.1:8000/api/clients/' + getClient().id.toString() + '/friends/', 
+		.get(vue_app.DOMAIN + '/api/clients/' + getClient().id.toString() + '/friends/', 
 			 {
 				 headers: headers
 			 })
@@ -50,7 +50,7 @@ function addToFriends() {
 		'friend': parseInt(getHrefInfo())
 	};
 	axios
-		.post('http://127.0.0.1:8000/api/clients/' + getClient().id.toString() + '/friends/', data,
+		.post(vue_app.DOMAIN + '/api/clients/' + getClient().id.toString() + '/friends/', data,
 			 {
 				 headers: headers
 			 })
@@ -66,7 +66,7 @@ function writeMessage() {
 		'second_user': second_user
 	};
 	axios
-		.post('http://127.0.0.1:8000/api/clients/' + getClient().id.toString() + '/chats/', data,
+		.post(vue_app.DOMAIN + '/api/clients/' + getClient().id.toString() + '/chats/', data,
 			 {
 				 headers: headers
 			 })

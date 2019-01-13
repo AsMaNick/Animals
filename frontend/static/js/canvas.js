@@ -113,7 +113,7 @@ function buildGraphic(x, y) {
 function reloadData() {
 	var headers = { 'accept-language': getLanguage()};
 	axios
-		.get('http://127.0.0.1:8000/api/pets/' + getHrefInfo() + '/logs/', 
+		.get(vue_app.DOMAIN + '/api/pets/' + getHrefInfo() + '/logs/', 
 			 {
 				 headers: headers
 			 })

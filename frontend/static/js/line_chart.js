@@ -6,7 +6,7 @@ var line_chart_component = Vue.component('line-chart', {
 		  this.renderChart({
 			  datasets: [{
 				showLine: true,
-				label: 'Temperature',
+				label: vue_app.literals.temperature[vue_app.language_id],
 				
 				fill: false,
 				borderColor: '#f87979',
@@ -15,7 +15,7 @@ var line_chart_component = Vue.component('line-chart', {
 			  },
 			  {
 				showLine: true,
-				label: 'Pulse',
+				label: vue_app.literals.pulse[vue_app.language_id],
 				fill: false,
 				borderColor: '#7acbf9',
 				backgroundColor: '#7acbf9',

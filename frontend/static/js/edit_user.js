@@ -40,7 +40,7 @@ function edit_user() {
 				.then(response => { 
 					console.log(response);
 					if (response.status == 201) {
-						//window.location.href = rawHref() + '/../viewuser.html' + link_delimiter + client_id.toString();
+						window.location.href = rawHref() + '/../viewuser.html' + link_delimiter + client_id.toString();
 					} else {
 					}
 				});

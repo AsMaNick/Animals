@@ -1,3 +1,12 @@
+if (!String.prototype.format) {
+	String.prototype.format = function() {
+		var args = arguments;
+		return this.replace(/{(\d+)}/g, function(match, number) { 
+			return typeof args[number] != 'undefined' ? args[number] : match;
+		});
+	};
+}
+
 function set_error(error_name, text) {
 	document.getElementById(error_name + '_error').innerHTML = text;
 	if (text == '') {
@@ -130,14 +139,21 @@ function getMax(a) {
 	return res;
 }
 
-if (!String.prototype.format) {
-  String.prototype.format = function() {
-    var args = arguments;
-    return this.replace(/{(\d+)}/g, function(match, number) { 
-      return typeof args[number] != 'undefined'
-        ? args[number]
-        : match
-      ;
-    });
-  };
+function getGeolocation(address) {
+	console.log(address);
+	if (address == "") {
+		return new Promise(function(resolve, reject) {
+				resolve({});
+			});
+	}
+	return axios
+		.get('https://maps.googleapis.com/maps/api/geocode/json?address={0}&key={1}'.format(address, vue_app.keyGoogleAPI))
+		.then(response => {
+			var geolocation = {};
+			if (response.data.status == "OK" && response.data.results.length > 0) {
+				var result = response.data.results[0];
+				geolocation = result.geometry.location;
+			}
+			return geolocation;
+		});
 }

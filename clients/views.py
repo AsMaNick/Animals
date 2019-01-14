@@ -72,7 +72,11 @@ def client_detail(request, pk):
         return JsonResponse(serializer.data)
 
     elif request.method == 'PATCH':
-        data = request.data
+        data = request.data.copy()
+        if 'lat' not in data:
+            data['lat'] = None
+        if 'lng' not in data:
+            data['lng'] = None
         serializer = ClientSerializer(client, data=data, partial=True)
         if serializer.is_valid():
             serializer.save()

@@ -25,18 +25,25 @@ function edit_user() {
 	if (photos.length > 0) {
 		form_data.append('avatar', photos[0]);
 	}
-	var client_id = getClient().id;
-	var headers = { 'accept-language': getLanguage(), 'Content-Type': 'Multipart/Form-data'};
-	axios.patch(vue_app.DOMAIN + '/api/clients/' + client_id.toString() + '/', form_data,
-																				{
-																					headers: headers
-																				})
-		.then(response => { 
-			console.log(response);
-			if (response.status == 201) {
-				window.location.href = rawHref() + '/../viewuser.html' + link_delimiter + client_id.toString();
-			} else {
+	getGeolocation(address)
+		.then(response => {
+			var geolocation = response;
+			for (var attr in geolocation) {
+				form_data.append(attr, geolocation[attr]);
 			}
+			var client_id = getClient().id;
+			var headers = { 'accept-language': getLanguage(), 'Content-Type': 'Multipart/Form-data'};
+			axios.patch(vue_app.DOMAIN + '/api/clients/' + client_id.toString() + '/', form_data,
+																						{
+																							headers: headers
+																						})
+				.then(response => { 
+					console.log(response);
+					if (response.status == 201) {
+						//window.location.href = rawHref() + '/../viewuser.html' + link_delimiter + client_id.toString();
+					} else {
+					}
+				});
 		});
 }
 

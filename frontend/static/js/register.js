@@ -25,25 +25,35 @@ function register() {
 	var address = document.getElementsByName('address')[0].value;
 	console.log(username, password, repeat_password, address);
 	var headers = { 'accept-language': getLanguage()};
-	axios.post(vue_app.DOMAIN + '/api/clients/', JSON.stringify({'username': username,
-																	 'name': name,
-																	 'surname': surname,
-																	 'password_hash': password,
-																	 'address': address}), 
-													 {
-														 headers: headers
-													 })
-	.then(response => { 
-		if (response.status == 200) {
-			for (var field in response.data) {
-				console.log(field, response.data[field]);
-				set_error(field, response.data[field]);
-				//break;
+	var data = {
+		'username': username,
+		'name': name,
+		'surname': surname,
+		'password_hash': password,
+		'address': address
+	}
+	getGeolocation(address)
+		.then(response => {
+			var geolocation = response;
+			for (var attr in geolocation) {
+				data[attr] = geolocation[attr];
 			}
-		} else if (response.status == 201) {
-			notifyUser(response.data.id, 'Welcome to EasyPet!').then(response => {
-				window.location.href += '/../login.html';
-			});
-		}
-	});
+			axios.post(vue_app.DOMAIN + '/api/clients/', JSON.stringify(data), 
+															 {
+																 headers: headers
+															 })
+				.then(response => { 
+					if (response.status == 200) {
+						for (var field in response.data) {
+							console.log(field, response.data[field]);
+							set_error(field, response.data[field]);
+							//break;
+						}
+					} else if (response.status == 201) {
+						notifyUser(response.data.id, 'Welcome to EasyPet!').then(response => {
+							window.location.href += '/../login.html';
+						});
+					}
+				});
+		});
 }

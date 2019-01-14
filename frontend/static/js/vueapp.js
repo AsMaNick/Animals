@@ -84,6 +84,7 @@ var vue_app = new Vue({
 			add_to_friends: [['Add to friends', 'Долучити до друзів'], ['Remove from friends', 'Видалити з друзів']],
 			you: ['You', 'Ви'],
 			no_messages: ['No messages yet...', 'Ще немає жодного повідомлення...'],
+			search_on_map: ['Search on map', 'Пошук на карті'],
 		},
 	},
 	methods: {

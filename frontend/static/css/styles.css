@@ -251,3 +251,7 @@ body {
 	width: 23.6%;
 	padding-left: 12px;
 }
+
+#map {
+	height: 506px
+}

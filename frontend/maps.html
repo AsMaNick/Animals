@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>EasyPet</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./static/third-party/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./static/css/styles.css">
+	<script src="./static/js/third-party/jquery.min.js"></script>
+	<script src="./static/third-party/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
+	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
+</head>
+<body onload="checkLogin()">
+	<div id="vueapp">
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom: 0px">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="./home.html">EasyPet</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle clickable" data-toggle="dropdown">
+							<img src="./static/img/en-flag.png" class="flag" id="language_flag"> </img>
+							{{ literals.languages[language_id] }} <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li onclick="changeLanguage('en')"><a class="clickable"> <img src="./static/img/en-flag.png" class="flag"> </img> english</a></li>
+							<li onclick="changeLanguage('ua')"><a class="clickable"> <img src="./static/img/ua-flag.png" class="flag"> </img> українська</a></li>
+						</ul>
+					</li>
+					<li><a :href="'./viewuser.html?' + client.id"><span class="glyphicon glyphicon-user"></span> {{ client.username }}</a></li>
+					<li><a class="clickable" onclick="logout()"><span class="glyphicon glyphicon-log-in"></span> {{ literals.logout[language_id] }}</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li><a href="./mypets.html">{{ literals.my_pets[language_id] }}</a></li>
+						<li><a href="./users.html?friends">{{ literals.my_friends[language_id] }}</a></li>
+						<li><a href="./messages.html">{{ literals.messages[language_id] }}</a></li>
+						<li><a href="./users.html">{{ literals.users[language_id] }}</a></li>
+						<li class="active"><a href="">{{ literals.search_on_map[language_id] }}</a></li>
+					</ul>
+				</div>
+			</div>
+        </div>
+		
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<h1 class="page-header">{{ literals.search_on_map[language_id] }}</h1>
+			<div id="map"></div>
+		</div>
+	</div>
+</body>
+
+<script src="./static/js/settings.js"></script>
+<script src="./static/js/utils.js"></script>
+<script src="./static/js/vueapp.js"></script>
+<script src="./static/js/maps.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQQMNg7hh4v5hTwAjAIan5HxcueyotZHk&callback=initMap" async defer></script>
+	
+</html>

@@ -2,7 +2,7 @@ var line_chart_component = Vue.component('line-chart', {
   extends: VueChartJs.Scatter,
  
   methods: {
-	  reloadPlot: function(temperatures, pulses) {
+	  reloadPlot: function(temperatures, pulses, animation_time) {
 		  this.renderChart({
 			  datasets: [{
 				showLine: true,
@@ -33,15 +33,11 @@ var line_chart_component = Vue.component('line-chart', {
 							}
 						},
 					}]
+				},
+				animation: {
+					duration: animation_time
 				}
 			})
-	  },
-	  updateLabels() {
-		  this.$nextTick(() => {
-			  for (let item of this.gap.options) {
-				item.label = item.label + '!'
-			  }
-		})
 	  }
   }  
 })

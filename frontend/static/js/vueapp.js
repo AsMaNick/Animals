@@ -1,4 +1,9 @@
-﻿var vue_app = new Vue({
+﻿if (!line_chart_component) {
+	var line_chart_component = Vue.component('line-chart', {
+	})
+}
+
+var vue_app = new Vue({
 	el: '#vueapp',
 	data: {
 		DOMAIN: 'http://127.0.0.1:8000',
@@ -179,5 +184,6 @@
 			}
 			return 'default';
 		}
-	}
+	},
+	components: {'line-chart': line_chart_component}
 });

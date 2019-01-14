@@ -245,3 +245,9 @@ body {
 .action_field {
 	/*color: #9d9d9d;*/
 }
+
+.big_photo_placeholder {
+	margin-left: 15px;
+	width: 23.6%;
+	padding-left: 12px;
+}

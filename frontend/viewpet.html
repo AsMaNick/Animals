@@ -13,6 +13,10 @@
 	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
 	<script type="text/javascript" src="static/js/third-party/d3.v4.min.js"></script>
 	<script type="text/javascript" src="static/js/third-party/d3-selection-multi.v1.min.js"></script>
+	<script type="text/javascript" src="static/js/third-party/moments.min.js"></script>
+	
+	<script type="text/javascript" src="static/js/third-party/Chart.min.js"></script>
+	<script type="text/javascript" src="static/js/third-party/vue-chartjs.min.js"></script>
 </head>
 <body onload="checkLogin(); loadPet();">
 	<div id="vueapp">
@@ -55,7 +59,7 @@
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h1 class="page-header">{{ pet.name }}</h1>
 			<div class="row placeholders">
-				<div class="col-xs-6 col-sm-3 placeholder panel panel-default">
+				<div class="col-xs-6 col-sm-3 placeholder panel panel-default big_photo_placeholder">
 					<img :src="DOMAIN + pet.avatar" class="pet_big_photo"> </img>
 				</div>
 				<div class="col-sm-9" contenteditable="false">
@@ -94,14 +98,7 @@
 				</div>
 				<div class="col-sm-12" contenteditable="false" style="float: right">
 					<div class='panel panel-default canvas'>
-						<div class="panel-heading">
-							<center>
-							<select class="form-control" name="plot_type" style="width: 15%; margin-top: 0px; margin-bottom: 0px" onchange="updatePlot()" id="plot_type">
-								<option>{{ literals.temperature[language_id] }}</option>
-								<option>{{ literals.pulse[language_id] }}</option>
-							</select>
-							</center>
-						</div>
+						<line-chart ref="lineChart"></line-chart>
 					</div>
 				</div>
 			</div>
@@ -112,6 +109,7 @@
 </body>
 
 <script src="./static/js/settings.js"></script>
+<script type="text/javascript" src="static/js/line_chart.js"></script>
 <script src="./static/js/vueapp.js"></script>
 <script type="text/javascript" src="static/js/canvas.js"></script>
 

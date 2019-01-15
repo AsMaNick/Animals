@@ -7,7 +7,6 @@ var vue_app = new Vue({
 	el: '#vueapp',
 	data: {
 		DOMAIN: 'http://127.0.0.1:8000',
-		keyGoogleAPI: 'AIzaSyAQQMNg7hh4v5hTwAjAIan5HxcueyotZHk',
 		pet: null,
 		pet_id: null,
 		pets: [],

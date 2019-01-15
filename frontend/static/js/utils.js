@@ -147,7 +147,7 @@ function getGeolocation(address) {
 			});
 	}
 	return axios
-		.get('https://maps.googleapis.com/maps/api/geocode/json?address={0}&key={1}'.format(address, vue_app.keyGoogleAPI))
+		.get('https://maps.googleapis.com/maps/api/geocode/json?address={0}&key={1}'.format(address, keyGoogleAPI))
 		.then(response => {
 			var geolocation = {};
 			if (response.data.status == "OK" && response.data.results.length > 0) {
@@ -156,4 +156,11 @@ function getGeolocation(address) {
 			}
 			return geolocation;
 		});
+}
+
+function loadGoogleMapsScript() {
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.src = 'https://maps.googleapis.com/maps/api/js?key={0}&callback=initMap'.format(keyGoogleAPI);
+	document.body.appendChild(script);
 }

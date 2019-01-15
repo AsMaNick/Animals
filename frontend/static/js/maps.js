@@ -1,5 +1,3 @@
-console.log('https://maps.googleapis.com/maps/api/js?key=' + vue_app.keyGoogleAPI + '&callback=initMap');
-
 var kharkiv = {
 	lat: 50.0065934, 
 	lng: 36.2345583

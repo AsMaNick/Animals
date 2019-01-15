@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="static/js/third-party/vue.js"></script>
 	<script type="text/javascript" src="static/js/third-party/axios.min.js"></script>
 </head>
-<body onload="checkLogin()">
+<body onload="checkLogin(); loadGoogleMapsScript();">
 	<div id="vueapp">
 		<nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom: 0px">
 			<div class="container-fluid">
@@ -56,10 +56,10 @@
 	</div>
 </body>
 
+<script src="./static/js/private_keys.js"></script>
 <script src="./static/js/settings.js"></script>
 <script src="./static/js/utils.js"></script>
 <script src="./static/js/vueapp.js"></script>
 <script src="./static/js/maps.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQQMNg7hh4v5hTwAjAIan5HxcueyotZHk&callback=initMap" async defer></script>
 	
 </html>

@@ -6,7 +6,7 @@
 var vue_app = new Vue({
 	el: '#vueapp',
 	data: {
-		DOMAIN: 'http://127.0.0.1:8000',
+		DOMAIN: 'https://bigbag.pythonanywhere.com',
 		pet: null,
 		pet_id: null,
 		pets: [],

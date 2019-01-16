@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             if (client_id == "") {
                 invalid_data_label.text = "Invalid login or password";
             } else {
-                val i = Intent(this, PetsListActivity::class.java)
+                val i = Intent(this, ProfileActivity::class.java)
                 i.putExtra("client_id", client_id)
                 i.putExtra("username", username.text.toString())
                 invalid_data_label.text = ""

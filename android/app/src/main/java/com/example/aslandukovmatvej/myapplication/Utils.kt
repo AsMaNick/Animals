@@ -5,7 +5,7 @@ import java.net.URL
 import io.reactivex.Observable
 import java.lang.RuntimeException
 
-const val domain = "http://10.0.1.6:8000"
+const val domain = "https://BigBag.pythonanywhere.com"
 
 fun createRequest(url: String) = Observable.create<String> {
     var urlConnection = URL(url).openConnection() as HttpURLConnection

@@ -3,7 +3,7 @@ var notified_pets = {};
 var vue_app = new Vue({
 	el: '.table',
 	data: {
-		DOMAIN: 'http://127.0.0.1:8000',
+		DOMAIN: 'https://bigbag.pythonanywhere.com',
 		pets: [],
 	}
 });

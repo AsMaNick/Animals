@@ -21,6 +21,8 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".PetsListActivity" />
         <activity android:name=".PetDetailActivity" />
+        <activity android:name=".UsersListActivity" />
+        <activity android:name=".UserDetailActivity" />
     </application>
 
 </manifest>

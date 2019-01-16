@@ -225,17 +225,16 @@ body {
  * Base structure
  */
  
- .pet_small_photo {
-	 width: 96px;
-	 height: 96px;
- }
- 
- .pet_big_photo {
-	 width: 228px;
-	 height: 228px;
-	 margin-top: 17px;
-	 margin-bottom: 17px;
- }
+.pet_small_photo {
+	width: 96px;
+	height: 96px;
+}
+
+.pet_big_photo {
+	width: 100%;
+	margin-top: 17px;
+	margin-bottom: 17px;
+}
  
  .canvas {
 	/*overflow: scroll;*/ /* Добавляем полосы прокрутки */
@@ -250,6 +249,7 @@ body {
 	margin-left: 15px;
 	width: 23.5%;
 	padding-left: 12px;
+	padding-right: 12px;
 }
 
 #map {

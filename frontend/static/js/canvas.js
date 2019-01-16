@@ -1,4 +1,8 @@
 function reloadData(animation_time) {
+	if (!vue_app.$refs.lineChart) {
+		return;
+	}
+	clearInterval(interval_reload_data);
 	var headers = { 'accept-language': getLanguage()};
 	axios
 		.get(vue_app.DOMAIN + '/api/pets/' + getHrefInfo() + '/logs/', 
@@ -20,12 +24,7 @@ function reloadData(animation_time) {
 				});
 			}
 			vue_app.$refs.lineChart.reloadPlot(temperatures, pulses, animation_time);
-			timeout_id = setTimeout(function() {
-				reloadData(0);
-			}, 5000000);
 		});
 }
 
-var timeout_id = setTimeout(function() {
-	reloadData(1000);
-}, 100);
+var interval_reload_data = setInterval(function() { reloadData(1000); }, 50);
